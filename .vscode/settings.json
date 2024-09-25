@@ -1,0 +1,21 @@
+{
+  // Extensions
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false,
+
+  // IDE Config
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "always"
+  },
+
+  // TS/JS Specific Config
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false
+}
