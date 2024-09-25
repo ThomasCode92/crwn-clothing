@@ -1,4 +1,4 @@
 {
-  "ignoreWords": [],
-  "words": []
+  "ignoreWords": ["tseslint"],
+  "words": ["crwn"]
 }
