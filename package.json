@@ -1,7 +1,6 @@
 {
   "name": "crwn-clothing",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky"
+  },
+  "engines": {
+    "node": "=20.11.1"
   },
   "dependencies": {
     "react": "^18.3.1",
