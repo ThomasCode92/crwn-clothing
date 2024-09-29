@@ -1,50 +1,34 @@
-# React + TypeScript + Vite
+# CRWN Clothing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A stylish online retail solution designed for an intuitive and engaging user experience. 👔👗
 
-Currently, two official plugins are available:
+**About this project**<br />
+Welcome to the '_CRWN Clothing_' repository, a project inspired by the capstone project from the [Complete React Developer](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/) course by [Zero To Mastery](https://zerotomastery.io/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository serves as a detailed example, highlighting both core and advanced React.js development concepts. It covers Components, State Management, and Routing, as well as integration with Firebase for data storage and authentication, and Stripe for payment processing. The project is deployed using Netlify, including serverless functions.
 
-## Expanding the ESLint configuration
+Dive into the depth of React.js capabilities with this illustrative (Web Shop based) application.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+To begin exploring and contributing to this project, follow the steps below or fork the repository and submit a PR.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+```bash
+git clone https://github.com/ThomasCode92/crwn-clothing.git
+cd crwn-clothing    # navigate into project folder
+npm install         # install dependencies
+npm run dev         # start development server
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Tech Stack and Architecture
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+This React project utilizes the following technologies:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+- Vite - A modern, lightning-fast front-end build tool that offers fast development and optimized production builds.
+- TypeScript - A statically-typed superset of JavaScript, ensuring robust type checking and better code maintainability.
+
+### Tooling
+
+- ESLint - For enforcing code quality and consistent coding standards.
+- Prettier - For automated code formatting to maintain a clean and uniform codebase.
+- Husky – Manages Git hooks to automate tasks such as pre-commit checks.
