@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+# CRWN Clothing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A stylish online retail solution designed for an intuitive and engaging user experience. 👔👗
 
-Currently, two official plugins are available:
+**About this project**<br />
+Welcome to the '_CRWN Clothing_' repository, a project inspired by the capstone project from the [Complete React Developer](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/) course by [Zero To Mastery](https://zerotomastery.io/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project serves as a detailed example, highlighting both core and advanced React.js development concepts. It covers Components, State Management, and Routing, as well as integration with _Firebase_ for data storage and authentication, and _Stripe_ for payment processing. The project is deployed using _Netlify_, including serverless functions.
 
-## Expanding the ESLint configuration
+Dive into the depth of [React.js](https://react.dev/) with this illustrative (Web Shop based) application.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+To start the application, ensure Node.js is installed on the system. Refer to the [official documentation](https://nodejs.org/en) for installation instructions. If [asdf](https://asdf-vm.com/) is being used, Node.js can also be installed via the `.tool-versions` file. More information on this is available [here](https://asdf-vm.com/manage/configuration.html#tool-versions).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Once NodeJS is installed, follow these steps to start the application:
+
+```bash
+git clone https://github.com/ThomasCode92/crwn-clothing.git
+cd crwn-clothing    # navigate into project folder
+npm install         # install dependencies
+npm run dev         # start development server
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To explore and contribute to this project, follow the steps above or fork the repository and submit a pull request.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Development
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+This project utilizes an advanced development stack featuring [Vite](https://vitejs.dev/) and [TypeScript](https://www.typescriptlang.org/) to enhance both performance and maintainability.
+
+- **Vite** - A modern, lightning-fast front-end build tool that offers fast development and optimized production builds.
+- **TypeScript** - A statically-typed superset of JavaScript, ensuring robust type checking and better code maintainability.
+
+### Tooling
+
+To ensure high code quality and maintainability, this project integrates several essential tools:
+
+- **ESLint** - For enforcing code quality and consistent coding standards.
+- **Prettier** - For automated code formatting to maintain a clean and uniform codebase.
+- **Husky** – Manages Git hooks to automate tasks such as pre-commit checks.
