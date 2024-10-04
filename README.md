@@ -5,13 +5,15 @@ A stylish online retail solution designed for an intuitive and engaging user exp
 **About this project**<br />
 Welcome to the '_CRWN Clothing_' repository, a project inspired by the capstone project from the [Complete React Developer](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/) course by [Zero To Mastery](https://zerotomastery.io/).
 
-This repository serves as a detailed example, highlighting both core and advanced React.js development concepts. It covers Components, State Management, and Routing, as well as integration with Firebase for data storage and authentication, and Stripe for payment processing. The project is deployed using Netlify, including serverless functions.
+This project serves as a detailed example, highlighting both core and advanced React.js development concepts. It covers Components, State Management, and Routing, as well as integration with _Firebase_ for data storage and authentication, and _Stripe_ for payment processing. The project is deployed using _Netlify_, including serverless functions.
 
-Dive into the depth of React.js capabilities with this illustrative (Web Shop based) application.
+Dive into the depth of [React.js](https://react.dev/) with this illustrative (Web Shop based) application.
 
 ## Getting Started
 
-To begin exploring and contributing to this project, follow the steps below or fork the repository and submit a PR.
+To start the application, ensure Node.js is installed on the system. Refer to the [official documentation](https://nodejs.org/en) for installation instructions. If [asdf](https://asdf-vm.com/) is being used, Node.js can also be installed via the `.tool-versions` file. More information on this is available [here](https://asdf-vm.com/manage/configuration.html#tool-versions).
+
+Once NodeJS is installed, follow these steps to start the application:
 
 ```bash
 git clone https://github.com/ThomasCode92/crwn-clothing.git
@@ -20,15 +22,19 @@ npm install         # install dependencies
 npm run dev         # start development server
 ```
 
-## Tech Stack and Architecture
+To explore and contribute to this project, follow the steps above or fork the repository and submit a pull request.
 
-This React project utilizes the following technologies:
+## Development
 
-- Vite - A modern, lightning-fast front-end build tool that offers fast development and optimized production builds.
-- TypeScript - A statically-typed superset of JavaScript, ensuring robust type checking and better code maintainability.
+This project utilizes an advanced development stack featuring [Vite](https://vitejs.dev/) and [TypeScript](https://www.typescriptlang.org/) to enhance both performance and maintainability.
+
+- **Vite** - A modern, lightning-fast front-end build tool that offers fast development and optimized production builds.
+- **TypeScript** - A statically-typed superset of JavaScript, ensuring robust type checking and better code maintainability.
 
 ### Tooling
 
-- ESLint - For enforcing code quality and consistent coding standards.
-- Prettier - For automated code formatting to maintain a clean and uniform codebase.
-- Husky – Manages Git hooks to automate tasks such as pre-commit checks.
+To ensure high code quality and maintainability, this project integrates several essential tools:
+
+- **ESLint** - For enforcing code quality and consistent coding standards.
+- **Prettier** - For automated code formatting to maintain a clean and uniform codebase.
+- **Husky** – Manages Git hooks to automate tasks such as pre-commit checks.
