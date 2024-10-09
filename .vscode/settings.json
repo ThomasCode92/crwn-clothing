@@ -15,6 +15,9 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "always"
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
 
   // TS/JS Specific Config
   "typescript.inlayHints.parameterNames.enabled": "all",
