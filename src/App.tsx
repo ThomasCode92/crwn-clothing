@@ -1,5 +1,9 @@
+import CategoryList from "./components/CategoryList";
+
+import categoryData from "./data/categories.json";
+
 import "./App.css";
 
 export default function App() {
-  return <h1>CRWN Clothing</h1>;
+  return <CategoryList categories={categoryData} />;
 }
