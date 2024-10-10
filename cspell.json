@@ -1,4 +1,4 @@
 {
-  "ignoreWords": ["tseslint"],
+  "ignoreWords": ["tseslint", "tailwindcss"],
   "words": ["crwn"]
 }

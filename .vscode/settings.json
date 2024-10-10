@@ -5,6 +5,11 @@
   "material-icon-theme.files.associations": {
     ".tool-versions": "nodejs_alt"
   },
+  "tailwindCSS.experimental.classRegex": [
+    ["[cC]lasses\\s*\\+?=\\s*([^;]*);", "'([^']*)'"],
+    ["[cC]lasses\\s*\\+?=\\s*([^;]*);", "\"([^\"]*)\""],
+    ["[cC]lasses\\s*\\+?=\\s*([^;]*);", "\\`([^\\`]*)\\`"]
+  ],
 
   // IDE Config
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -14,6 +19,10 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "always"
+  },
+  "editor.rulers": [80],
+  "files.associations": {
+    "*.css": "tailwindcss"
   },
 
   // TS/JS Specific Config

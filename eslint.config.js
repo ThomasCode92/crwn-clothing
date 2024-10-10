@@ -5,6 +5,7 @@ import tseslint from "typescript-eslint";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import tailwind from "eslint-plugin-tailwindcss";
 
 export default tseslint.config(
   { ignores: ["dist"] },
@@ -13,6 +14,7 @@ export default tseslint.config(
       js.configs.recommended,
       ...tseslint.configs.recommended,
       eslintPluginPrettierRecommended,
+      ...tailwind.configs["flat/recommended"],
     ],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
