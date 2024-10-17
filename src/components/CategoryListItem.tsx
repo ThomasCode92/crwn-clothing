@@ -11,6 +11,7 @@ export default function CategoryListItem({ category }: CategoryItemProps) {
       className="m-2 flex h-60 w-44 min-w-[30%] flex-auto items-center justify-center overflow-hidden border-2 border-black hover:cursor-pointer [&>div]:hover:scale-110 [&>div]:hover:transition-transform"
     >
       <div
+        data-testid="category-image"
         className="size-full bg-cover bg-center"
         style={{ backgroundImage: `url(${category.imageUrl})` }}
       ></div>
