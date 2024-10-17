@@ -6,6 +6,7 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tailwind from "eslint-plugin-tailwindcss";
+import vitest from "eslint-plugin-vitest";
 
 export default tseslint.config(
   { ignores: ["dist"] },
@@ -32,6 +33,14 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
+    },
+  },
+  {
+    files: ["**/*.test.{ts,tsx}"],
+    plugins: { vitest },
+    rules: { ...vitest.configs.recommended.rules },
+    languageOptions: {
+      globals: { ...vitest.environments.env.globals },
     },
   },
 );
