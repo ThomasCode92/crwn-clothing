@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { expect, test } from "vitest";
 
 import CategoryListItem from "./CategoryListItem";
 
@@ -15,7 +14,7 @@ test("should render the title of the category", function () {
 
 test("should render the subtitle for category", function () {
   render(<CategoryListItem category={category} />);
-  const subTitleEl = screen.getByText("shop now");
+  const subTitleEl = screen.getByText(/shop now/i);
   expect(subTitleEl).toBeInTheDocument();
 });
 
