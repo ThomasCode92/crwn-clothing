@@ -20,6 +20,8 @@ git clone https://github.com/ThomasCode92/crwn-clothing.git
 cd crwn-clothing    # navigate into project folder
 npm install         # install dependencies
 npm run dev         # start development server
+
+npm test            # run the unit tests
 ```
 
 To explore and contribute to this project, follow the steps above or fork the repository and submit a pull request.
@@ -38,3 +40,12 @@ To ensure high code quality and maintainability, this project integrates several
 - **ESLint** - For enforcing code quality and consistent coding standards.
 - **Prettier** - For automated code formatting to maintain a clean and uniform codebase.
 - **Husky** – Manages Git hooks to automate tasks such as pre-commit checks.
+
+### Testing
+
+This project incorporates a comprehensive testing setup to ensure reliability and prevent regressions.
+
+- **Vitest** - A Vite-native testing framework that offers fast test execution and seamless integration with the existing development setup. Vitest ensures that unit tests run efficiently and remain easy to maintain.
+- **React Testing Library** - A lightweight solution for testing React components by focusing on component behavior rather than implementation details. It encourages better testing practices by interacting with components the way users would, enhancing test reliability.
+
+Tests for this project can be executed using the `npm test` command.
