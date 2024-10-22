@@ -1,13 +1,12 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
+import NavigationBar from "../../components/NavigationBar";
 
 export default function RootLayout() {
   return (
     <Fragment>
-      <header>
-        <h1>My App</h1>
-      </header>
-      <main data-testid="main-content">
+      <NavigationBar />
+      <main>
         <Outlet />
       </main>
     </Fragment>
