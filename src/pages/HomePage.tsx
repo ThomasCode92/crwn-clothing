@@ -1,7 +1,10 @@
+import { useLoaderData } from "react-router-dom";
+
 import CategoryList from "../components/CategoryList";
 
-import categoryData from "../data/categories.json";
+import { ICategory } from "../models/Category";
 
 export default function HomePage() {
-  return <CategoryList categories={categoryData} />;
+  const categories = useLoaderData() as ICategory[];
+  return <CategoryList categories={categories} />;
 }
