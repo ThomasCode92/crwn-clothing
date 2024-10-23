@@ -5,7 +5,7 @@ import NavigationBar from "./NavigationBar";
 
 test("should render a logo", function () {
   render(<NavigationBar />, { wrapper: MemoryRouter });
-  const logoElement = screen.getByText(/logo/i);
+  const logoElement = screen.getByTestId("crown-logo");
   expect(logoElement).toBeInTheDocument();
 });
 

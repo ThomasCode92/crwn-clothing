@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 
+import CrownLogo from "../assets/crown.svg";
+
 export default function NavigationBar() {
   return (
     <nav>
       <Link to="/">
-        <div>Logo</div>
+        <CrownLogo data-testid="crown-logo" />
       </Link>
       <ul>
         <li>
