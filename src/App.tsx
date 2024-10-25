@@ -1,19 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import HomePage from "./pages/HomePage";
-import RootLayout from "./pages/layouts/RootLayout";
-
-import { getCategories } from "./api/category";
+import { routes } from "./routes";
 
 import "./App.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    children: [{ index: true, element: <HomePage />, loader: getCategories }],
-  },
-]);
+const router = createBrowserRouter(routes);
 
 export default function App() {
   return <RouterProvider router={router} />;
