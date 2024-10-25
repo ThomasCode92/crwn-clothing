@@ -1,9 +1,10 @@
-import CategoryList from "./components/CategoryList";
-
-import categoryData from "./data/categories.json";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { routes } from "./routes";
 
 import "./App.css";
 
+const router = createBrowserRouter(routes);
+
 export default function App() {
-  return <CategoryList categories={categoryData} />;
+  return <RouterProvider router={router} />;
 }
