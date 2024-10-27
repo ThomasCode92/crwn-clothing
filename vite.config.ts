@@ -14,6 +14,7 @@ const svgrOptions: VitePluginSvgrOptions["svgrOptions"] = {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr({ svgrOptions, include: "**/*.svg" })],
+  envDir: "./env",
   test: {
     globals: true,
     environment: "jsdom",
