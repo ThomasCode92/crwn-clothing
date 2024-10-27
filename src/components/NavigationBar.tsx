@@ -8,9 +8,12 @@ export default function NavigationBar() {
       <Link className="flex flex-col justify-around" to="/">
         <CrownLogo data-testid="crown-logo" />
       </Link>
-      <ul>
+      <ul className="flex gap-6">
         <li className="text-lg uppercase">
           <Link to="/shop">shop</Link>
+        </li>
+        <li className="text-lg uppercase">
+          <Link to="/sign-in">sign in</Link>
         </li>
       </ul>
     </nav>

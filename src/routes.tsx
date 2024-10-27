@@ -3,6 +3,7 @@ import { RouteObject } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/layouts/RootLayout";
 import ShopPage from "./pages/ShopPage";
+import SignInPage from "./pages/SignInPage";
 
 import { getCategories } from "./api/category";
 
@@ -13,6 +14,7 @@ export const routes: RouteObject[] = [
     children: [
       { index: true, element: <HomePage />, loader: getCategories },
       { path: "shop", element: <ShopPage /> },
+      { path: "sign-in", element: <SignInPage /> },
     ],
   },
 ];
