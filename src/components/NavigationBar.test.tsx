@@ -14,3 +14,9 @@ test("should have a link to the shop page", function () {
   const shopLinkElement = screen.getByText(/shop/i);
   expect(shopLinkElement).toHaveAttribute("href", "/shop");
 });
+
+test("should have a link to the sign in page", function () {
+  render(<NavigationBar />, { wrapper: MemoryRouter });
+  const signInLinkElement = screen.getByText(/sign in/i);
+  expect(signInLinkElement).toHaveAttribute("href", "/sign-in");
+});

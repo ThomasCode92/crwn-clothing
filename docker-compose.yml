@@ -1,0 +1,18 @@
+services:
+  emulator:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.firebase
+      args:
+        - FIREBASE_VERSION=13.3.0
+    env_file:
+      - ./env/.env.local
+    ports:
+      - "4000:4001" # ui
+      - "4600:4601" # logging
+      - "9099:9100" # auth
+      - "8080:8081" # firestore
+    volumes:
+      - ./firebase:/srv/firebase:rw
+      - ./cache:/root/.cache/:rw
+      - ./firebase/data:/srv/firebase/data:rw

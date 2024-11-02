@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Cache
+cache
+
+# Environment Variables
+.env
+
 # Editor directories and files
 .idea
 .DS_Store

@@ -25,6 +25,14 @@
     "*.css": "tailwindcss"
   },
 
+  // Language Specific Config
+  "[nginx]": {
+    "editor.defaultFormatter": "ahmadalli.vscode-nginx-conf"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+
   // TS/JS Specific Config
   "typescript.inlayHints.parameterNames.enabled": "all",
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
