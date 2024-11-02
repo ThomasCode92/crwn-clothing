@@ -26,6 +26,44 @@ npm test            # run the unit tests
 
 To explore and contribute to this project, follow the steps above or fork the repository and submit a pull request.
 
+### Environment variables
+
+For this project to function properly, it's essential to set up a couple of API keys. The needed keys are for:
+
+- [Firebase](https://firebase.google.com/), authentication and storage
+
+For that, create the following `.env` file in the `env` folder:
+
+```bash
+VITE_API_KEY=...
+VITE_AUTH_DOMAIN=...
+VITE_PROJECT_ID=...
+VITE_STORAGE_BUCKET=...
+VITE_MESSAGING_SENDER_ID=...
+VITE_APP_ID=...
+```
+
+### Firebase Emulator
+
+To use the emulator, add the following to a `.env` files in the `env` folder. The run the app without the emulator, comment out the _VITE_FIREBASE_ variables in `.env`.
+
+```bash
+# .env
+VITE_FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
+VITE_FIRESTORE_EMULATOR_HOST=localhost:8080
+
+# .env.local
+FIREBASE_PROJECT=...
+DATA_DIRECTORY=data
+```
+
+Next run the following commands:
+
+```bash
+docker compose up -d
+npm run dev
+```
+
 ## Development
 
 This project utilizes an advanced development stack featuring [Vite](https://vitejs.dev/) and [TypeScript](https://www.typescriptlang.org/) to enhance both performance and maintainability.
