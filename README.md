@@ -64,6 +64,10 @@ docker compose up -d
 npm run dev
 ```
 
+### Debugging
+
+To start the application in debug mode when encountering a bug, follow these steps. First, execute the debug script by running the command `npm run debug`. Then, initiate the VS Code debugger by clicking the green play icon in the debug panel and select the `crwn-clothing` configuration. This will open a Chrome browser connected to the debugger, enabling inspection and troubleshooting of the application with ease.
+
 ## Development
 
 This project utilizes an advanced development stack featuring [Vite](https://vitejs.dev/) and [TypeScript](https://www.typescriptlang.org/) to enhance both performance and maintainability.
