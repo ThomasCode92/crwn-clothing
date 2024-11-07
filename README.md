@@ -11,64 +11,70 @@ Dive into the depth of [React.js](https://react.dev/) with this illustrative (We
 
 ## Getting Started
 
-To start the application, ensure Node.js is installed on the system. Refer to the [official documentation](https://nodejs.org/en) for installation instructions. If [asdf](https://asdf-vm.com/) is being used, Node.js can also be installed via the `.tool-versions` file. More information on this is available [here](https://asdf-vm.com/manage/configuration.html#tool-versions).
-
-Once NodeJS is installed, follow these steps to start the application:
+Ensure that all required [environment variables](./README.md#environment-variables) are configured correctly to prevent setup errors. To start the application, verify that Docker is installed. With Docker available, the entire development setup can be launched and stopped with the following commands:
 
 ```bash
-git clone https://github.com/ThomasCode92/crwn-clothing.git
-cd crwn-clothing    # navigate into project folder
-npm install         # install dependencies
-npm run dev         # start development server
-
-npm test            # run the unit tests
+  docker compose up -d    # start react app and firebase emulator
+  docker compose down -v  # stop all the services
 ```
 
-To explore and contribute to this project, follow the steps above or fork the repository and submit a pull request.
+### Running without Firebase Emulator
+
+To run the application without the Firebase Emulator, ensure Node.js is installed locally. If Node.js is not already installed, refer to the [official installation](https://nodejs.org/en) guide. For those using [asdf](https://asdf-vm.com/), Node.js can also be installed via the `.tool-versions` file. Additional information is available in the [asdf configuration guide](https://asdf-vm.com/manage/configuration.html#tool-versions).
+
+**Local Development Setup**<br />
+Once Node.js is installed and environment variables are configured, follow these steps to start the application. The app will connect to the specified Firebase cloud project if the correct environment variables are provided:
+
+```bash
+npm install   # install dependencies
+npm run dev   # start development server
+```
 
 ### Environment variables
 
 For this project to function properly, it's essential to set up a couple of API keys. The needed keys are for:
 
 - [Firebase](https://firebase.google.com/), authentication and storage
+- [Firebase Emulator](https://firebase.google.com/docs/emulator-suite), local development for Firebase
 
-For that, create the following `.env` file in the `env` folder:
+For that, create the following files in the `env` folder:
+
+<details>
+<summary>Environment Variables Files</summary>
+
+**.env**
 
 ```bash
+# Firebase Emulator Config
+VITE_FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
+VITE_FIRESTORE_EMULATOR_HOST=localhost:8080
+
+# Firebase Local Config
+DATA_DIRECTORY=data
+```
+
+**.env.local**
+
+```bash
+# Firebase Project Config
 VITE_API_KEY=...
 VITE_AUTH_DOMAIN=...
 VITE_PROJECT_ID=...
 VITE_STORAGE_BUCKET=...
 VITE_MESSAGING_SENDER_ID=...
 VITE_APP_ID=...
+
+# Firebase Emulator Config
+FIREBASE_PROJECT=... # same as VITE_PROJECT_ID
 ```
 
-### Firebase Emulator
-
-To use the emulator, add the following to a `.env` files in the `env` folder. The run the app without the emulator, comment out the _VITE_FIREBASE_ variables in `.env`.
-
-```bash
-# .env
-VITE_FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
-VITE_FIRESTORE_EMULATOR_HOST=localhost:8080
-
-# .env.local
-FIREBASE_PROJECT=...
-DATA_DIRECTORY=data
-```
-
-Next run the following commands:
-
-```bash
-docker compose up -d
-npm run dev
-```
+</details>
 
 ### Debugging
 
-To start the application in debug mode when encountering a bug, follow these steps. First, execute the debug script by running the command `npm run debug`. Then, initiate the VS Code debugger by clicking the green play icon in the debug panel and select the `crwn-clothing` configuration. This will open a Chrome browser connected to the debugger, enabling inspection and troubleshooting of the application with ease.
+To start the application in debug mode when encountering a bug, follow these steps. First, ensure the app is running either with `npm run start` or within a Docker container. Next, open the VS Code debugger, click the green play icon in the debug panel, and select the appropriate configuration: `crwn-clothing-local` or `crwn-clothing-docker`. This will launch a Chrome browser connected to the debugger, allowing for easy inspection and troubleshooting of the application.
 
-## Development
+## Technology Stack
 
 This project utilizes an advanced development stack featuring [Vite](https://vitejs.dev/) and [TypeScript](https://www.typescriptlang.org/) to enhance both performance and maintainability.
 
@@ -89,5 +95,3 @@ This project incorporates a comprehensive testing setup to ensure reliability an
 
 - **Vitest** - A Vite-native testing framework that offers fast test execution and seamless integration with the existing development setup. Vitest ensures that unit tests run efficiently and remain easy to maintain.
 - **React Testing Library** - A lightweight solution for testing React components by focusing on component behavior rather than implementation details. It encourages better testing practices by interacting with components the way users would, enhancing test reliability.
-
-Tests for this project can be executed using the `npm test` command.
