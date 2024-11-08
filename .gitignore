@@ -11,12 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+*.prod
 
 # Cache
 cache
-
-# Environment Variables
-.env
 
 # Editor directories and files
 .idea

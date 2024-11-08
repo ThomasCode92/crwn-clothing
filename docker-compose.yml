@@ -1,18 +1,36 @@
 services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev
+      tags:
+        - thomascode92/crwn-clothing:dev
+    image: thomascode92/crwn-clothing:dev
+    env_file:
+      - ./env/.env
+      - ./env/.env.local
+    ports:
+      - "3000:5173"
+    volumes:
+      - ./src:/usr/app/src
+      - /usr/app/node_modules
+    container_name: crwn-clothing
   emulator:
     build:
       context: .
       dockerfile: ./docker/Dockerfile.firebase
-      args:
-        - FIREBASE_VERSION=13.3.0
+      tags:
+        - thomascode92/firebase-emulator
+    image: thomascode92/firebase-emulator
     env_file:
+      - ./env/.env
       - ./env/.env.local
     ports:
       - "4000:4001" # ui
       - "4600:4601" # logging
       - "9099:9100" # auth
-      - "8080:8081" # firestore
     volumes:
       - ./firebase:/srv/firebase:rw
       - ./cache:/root/.cache/:rw
       - ./firebase/data:/srv/firebase/data:rw
+    container_name: firebase-emulator
