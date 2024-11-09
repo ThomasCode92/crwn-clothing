@@ -10,6 +10,7 @@ import {
   doc,
   getDoc,
   getFirestore,
+  setDoc,
 } from "firebase/firestore";
 
 import firebaseApp from "../config/firebase";
@@ -36,5 +37,17 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export async function createUserDocumentFromAuth(userAuth: User) {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnap = await getDoc(userDocRef);
-  console.log(userSnap.exists());
+
+  if (!userSnap.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, { displayName, email, createdAt });
+    } catch (error) {
+      console.error("Error creating user document", error);
+    }
+  }
+
+  return userDocRef;
 }

@@ -6,7 +6,8 @@ import {
 export default function SignInPage() {
   const handleLoginWithGoogle = async () => {
     const response = await signInWithGoogle();
-    createUserDocumentFromAuth(response.user);
+    const userDocRef = await createUserDocumentFromAuth(response.user);
+    console.log(userDocRef);
   };
 
   return (
