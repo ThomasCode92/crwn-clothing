@@ -1,9 +1,12 @@
-import { signInWithGoogle } from "../utils/firebase";
+import {
+  createUserDocumentFromAuth,
+  signInWithGoogle,
+} from "../utils/firebase";
 
 export default function SignInPage() {
   const handleLoginWithGoogle = async () => {
     const response = await signInWithGoogle();
-    console.log(response);
+    createUserDocumentFromAuth(response.user);
   };
 
   return (
