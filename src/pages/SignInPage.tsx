@@ -1,19 +1,44 @@
+import { getRedirectResult } from "firebase/auth";
+import { useEffect } from "react";
 import {
+  auth,
   createUserDocumentFromAuth,
-  signInWithGoogle,
+  signInWithGooglePopup,
+  signInWithGoogleRedirect,
 } from "../utils/firebase";
 
 export default function SignInPage() {
-  const handleLoginWithGoogle = async () => {
-    const response = await signInWithGoogle();
+  useEffect(() => {
+    async function handleRedirectResult() {
+      const result = await getRedirectResult(auth);
+      if (result) {
+        const userDocRef = await createUserDocumentFromAuth(result.user);
+        console.log(userDocRef);
+      }
+    }
+
+    handleRedirectResult();
+  }, []);
+
+  async function handleLoginWithGooglePopup() {
+    const response = await signInWithGooglePopup();
     const userDocRef = await createUserDocumentFromAuth(response.user);
     console.log(userDocRef);
-  };
+  }
+
+  async function handleRedirectWithGoogle() {
+    await signInWithGoogleRedirect();
+  }
 
   return (
     <div>
       <h1>Sign In Page</h1>
-      <button onClick={handleLoginWithGoogle}>Sign in with Google</button>
+      <button onClick={handleLoginWithGooglePopup}>
+        Sign in with Google Popup
+      </button>
+      <button onClick={handleRedirectWithGoogle}>
+        Sign in with Google Redirect
+      </button>
     </div>
   );
 }
