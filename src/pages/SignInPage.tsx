@@ -1,5 +1,6 @@
 import { getRedirectResult } from "firebase/auth";
 import { useEffect } from "react";
+import SignUpForm from "../components/authentication/SignUpForm";
 import {
   auth,
   createUserDocumentFromAuth,
@@ -39,6 +40,7 @@ export default function SignInPage() {
       <button onClick={handleRedirectWithGoogle}>
         Sign in with Google Redirect
       </button>
+      <SignUpForm />
     </div>
   );
 }
