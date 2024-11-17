@@ -1,5 +1,6 @@
 import {
   connectAuthEmulator,
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
@@ -54,4 +55,11 @@ export async function createUserDocumentFromAuth(userAuth: User) {
   }
 
   return userDocRef;
+}
+
+export async function createAuthUserWithEmailAndPassword(
+  email: string,
+  password: string,
+) {
+  return createUserWithEmailAndPassword(auth, email, password);
 }

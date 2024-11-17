@@ -1,4 +1,5 @@
-import { ChangeEvent, Fragment, useState } from "react";
+import { ChangeEvent, FormEvent, Fragment, useState } from "react";
+import { createAuthUserWithEmailAndPassword } from "../../utils/firebase";
 
 const INITIAL_FORM_FIELDS = {
   displayName: "",
@@ -15,10 +16,15 @@ export default function SignUpForm() {
     setFormFields(prev => ({ ...prev, [name]: value }));
   }
 
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    createAuthUserWithEmailAndPassword(formFields.email, formFields.password);
+  }
+
   return (
     <Fragment>
       <h3>Sign up with your email and password</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">Display Name</label>
         <input
           name="displayName"
