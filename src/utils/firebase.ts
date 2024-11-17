@@ -39,7 +39,10 @@ export const signInWithGooglePopup = () =>
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleAuthProvider);
 
-export async function createUserDocumentFromAuth(userAuth: User) {
+export async function createUserDocumentFromAuth(
+  userAuth: User,
+  additionalData?: object,
+) {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnap = await getDoc(userDocRef);
 
@@ -48,7 +51,12 @@ export async function createUserDocumentFromAuth(userAuth: User) {
     const createdAt = new Date();
 
     try {
-      await setDoc(userDocRef, { displayName, email, createdAt });
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
     } catch (error) {
       console.error("Error creating user document", error);
     }
