@@ -13,7 +13,7 @@ export default function NavigationBar() {
           <Link to="/shop">shop</Link>
         </li>
         <li className="text-lg uppercase">
-          <Link to="/sign-in">sign in</Link>
+          <Link to="/auth">sign in</Link>
         </li>
       </ul>
     </nav>
