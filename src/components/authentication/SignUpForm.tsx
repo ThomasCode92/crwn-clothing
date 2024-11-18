@@ -1,5 +1,7 @@
 import { AuthError } from "firebase/auth";
-import { ChangeEvent, FormEvent, Fragment, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+
+import FormInput from "../UI/FormInput";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -48,43 +50,44 @@ export default function SignUpForm() {
   }
 
   return (
-    <Fragment>
-      <h3>Sign up with your email and password</h3>
+    <section className="flex w-96 flex-col">
+      <span>Don't have an account</span>
+      <h3 className="my-2.5">Sign up with your email and password</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="">Display Name</label>
-        <input
+        <FormInput
+          label="Display Name"
           name="displayName"
-          value={formFields.displayName}
           type="text"
-          required
+          value={formFields.displayName}
           onChange={handleChange}
+          required
         />
-        <label htmlFor="">Email</label>
-        <input
+        <FormInput
+          label="Email"
           name="email"
-          value={formFields.email}
           type="email"
-          required
+          value={formFields.email}
           onChange={handleChange}
+          required
         />
-        <label htmlFor="">Password</label>
-        <input
+        <FormInput
+          label="Password"
           name="password"
+          type="password"
           value={formFields.password}
-          type="password"
-          required
           onChange={handleChange}
+          required
         />
-        <label htmlFor="">Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           name="confirmPassword"
-          value={formFields.confirmPassword}
           type="password"
-          required
+          value={formFields.confirmPassword}
           onChange={handleChange}
+          required
         />
         <button type="submit">Sign Up</button>
       </form>
-    </Fragment>
+    </section>
   );
 }
