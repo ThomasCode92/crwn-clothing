@@ -1,6 +1,7 @@
 import { AuthError } from "firebase/auth";
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import Button from "../UI/Button";
 import FormInput from "../UI/FormInput";
 
 import {
@@ -86,7 +87,7 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </section>
   );
