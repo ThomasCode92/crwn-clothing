@@ -5,3 +5,9 @@ body {
 a {
   color: black;
 }
+
+#root {
+  width: 80%;
+  max-width: 85rem;
+  margin: auto;
+}

@@ -16,6 +16,9 @@ dist-ssr
 # Cache
 cache
 
+# Firebase data
+firebase/data
+
 # Editor directories and files
 .idea
 .DS_Store

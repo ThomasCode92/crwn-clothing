@@ -24,6 +24,7 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "explorer.compactFolders": false,
 
   // Language Specific Config
   "[nginx]": {

@@ -15,8 +15,8 @@ test("should have a link to the shop page", function () {
   expect(shopLinkElement).toHaveAttribute("href", "/shop");
 });
 
-test("should have a link to the sign in page", function () {
+test("should have a link to the authentication page", function () {
   render(<NavigationBar />, { wrapper: MemoryRouter });
   const signInLinkElement = screen.getByText(/sign in/i);
-  expect(signInLinkElement).toHaveAttribute("href", "/sign-in");
+  expect(signInLinkElement).toHaveAttribute("href", "/auth");
 });
