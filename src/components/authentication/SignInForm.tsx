@@ -27,10 +27,7 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
   useEffect(() => {
     async function handleRedirectResult() {
       const result = await getRedirectResult(auth);
-      if (result) {
-        const userDocRef = await createUserDocumentFromAuth(result.user);
-        console.log(userDocRef);
-      }
+      if (result) await createUserDocumentFromAuth(result.user);
     }
 
     if (useRedirect) handleRedirectResult();
@@ -62,8 +59,7 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
 
   async function handleLoginWithGooglePopup() {
     const response = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(response.user);
-    console.log(userDocRef);
+    await createUserDocumentFromAuth(response.user);
   }
 
   async function handleRedirectWithGoogle() {

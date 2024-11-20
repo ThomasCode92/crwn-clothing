@@ -19,7 +19,6 @@ export default function Button({
 
   if (buttonType === "google-sign-in") {
     classes += tw`bg-google text-white hover:border-google hover:bg-white hover:text-google`;
-    console.log(classes);
   }
 
   if (buttonType === "inverted") {
