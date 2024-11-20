@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 
-import AuthenticationPage from "./pages/Authentication";
+import AuthenticationPage from "./pages/AuthenticationPage";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/layouts/RootLayout";
 import ShopPage from "./pages/ShopPage";
