@@ -1,4 +1,4 @@
-import { getRedirectResult } from "firebase/auth";
+import { AuthError, getRedirectResult } from "firebase/auth";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 import Button from "../UI/Button";
@@ -7,6 +7,7 @@ import FormInput from "../UI/FormInput";
 import {
   auth,
   createUserDocumentFromAuth,
+  signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
 } from "../../utils/firebase";
@@ -32,8 +33,8 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
       }
     }
 
-    handleRedirectResult();
-  }, []);
+    if (useRedirect) handleRedirectResult();
+  }, [useRedirect]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -42,6 +43,21 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    try {
+      await signInAuthUserWithEmailAndPassword(
+        formFields.email,
+        formFields.password,
+      );
+    } catch (error) {
+      if (
+        (error as AuthError).code === "auth/wrong-password" ||
+        (error as AuthError).code === "auth/user-not-found"
+      ) {
+        alert("Wrong email or password");
+      }
+      console.error("Error signing in", error);
+    }
   }
 
   async function handleLoginWithGooglePopup() {
@@ -56,8 +72,10 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
 
   return (
     <section className="flex w-96 flex-col">
-      <span>Already have an account?</span>
-      <h3 className="my-2.5">Sign in with your email and password</h3>
+      <span className="italic text-gray-600">Already have an account?</span>
+      <h3 className="my-2.5 text-xl font-bold">
+        Sign in with your email and password
+      </h3>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Email"

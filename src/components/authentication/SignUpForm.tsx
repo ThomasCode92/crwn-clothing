@@ -52,8 +52,10 @@ export default function SignUpForm() {
 
   return (
     <section className="flex w-96 flex-col">
-      <span>Don't have an account</span>
-      <h3 className="my-2.5">Sign up with your email and password</h3>
+      <span className="italic text-gray-600">Don't have an account</span>
+      <h3 className="my-2.5 text-xl font-bold">
+        Sign up with your email and password
+      </h3>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
