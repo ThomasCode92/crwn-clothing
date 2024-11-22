@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { ICategory } from "../models/Category";
+import { ICategory } from "@/models/Category";
 import CategoryList from "./CategoryList";
 
 const categories: ICategory[] = [

@@ -1,5 +1,5 @@
-import SignInForm from "../components/authentication/SignInForm";
-import SignUpForm from "../components/authentication/SignUpForm";
+import SignInForm from "@/components/authentication/SignInForm";
+import SignUpForm from "@/components/authentication/SignUpForm";
 
 export default function AuthenticationPage() {
   return (

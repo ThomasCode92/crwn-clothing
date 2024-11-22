@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-import tw from "../../utils/tw-identity";
+import tw from "@/utils/tw-identity";
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;

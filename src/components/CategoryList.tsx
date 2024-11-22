@@ -1,6 +1,6 @@
 import CategoryListItem from "./CategoryListItem";
 
-import { ICategory } from "../models/Category";
+import { ICategory } from "@/models/Category";
 
 interface CategoryListProps {
   categories: ICategory[];

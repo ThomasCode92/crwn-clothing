@@ -16,7 +16,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 
-import firebaseApp from "../config/firebase";
+import firebaseApp from "@/config/firebase";
 
 const FIREBASE_AUTH_EMULATOR = import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST;
 

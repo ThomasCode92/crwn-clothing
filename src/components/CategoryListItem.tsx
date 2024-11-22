@@ -1,4 +1,4 @@
-import { ICategory } from "../models/Category";
+import { ICategory } from "@/models/Category";
 
 interface CategoryItemProps {
   category: ICategory;

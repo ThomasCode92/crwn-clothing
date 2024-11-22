@@ -9,7 +9,7 @@ const mockedMethods = vi.hoisted(function () {
   };
 });
 
-vi.mock("../../utils/firebase", function () {
+vi.mock("@/utils/firebase", function () {
   return {
     signInAuthUserWithEmailAndPassword: mockedMethods.signInAuthUserFn,
   };
