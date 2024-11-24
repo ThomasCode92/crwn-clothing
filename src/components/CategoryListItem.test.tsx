@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { ICategory } from "../models/Category";
+import { ICategory } from "@/models/Category";
 import CategoryListItem from "./CategoryListItem";
 
 const category: ICategory = { id: 1, title: "hats", imageUrl: "some-url" };

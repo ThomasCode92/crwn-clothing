@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 
-import * as CategoryList from "../components/CategoryList";
+import * as CategoryList from "@/components/CategoryList";
 import HomePage from "./HomePage";
 
-import { ICategory } from "../models/Category";
+import { ICategory } from "@/models/Category";
 
 const { categories } = vi.hoisted(function () {
   const categories: ICategory[] = [

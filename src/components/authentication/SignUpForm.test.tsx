@@ -10,7 +10,7 @@ const mockedMethods = vi.hoisted(function () {
   };
 });
 
-vi.mock("../../utils/firebase", function () {
+vi.mock("@/utils/firebase", function () {
   return {
     createAuthUserWithEmailAndPassword: mockedMethods.createAuthUserFn,
     createUserDocumentFromAuth: mockedMethods.createUserDocumentFn,

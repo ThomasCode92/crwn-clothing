@@ -1,8 +1,8 @@
 import { AuthError, getRedirectResult } from "firebase/auth";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
-import Button from "../UI/Button";
-import FormInput from "../UI/FormInput";
+import Button from "@/components/UI/Button";
+import FormInput from "@/components/UI/FormInput";
 
 import {
   auth,
@@ -10,7 +10,7 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
-} from "../../utils/firebase";
+} from "@/utils/firebase";
 
 const INITIAL_FORM_FIELDS = {
   email: "",

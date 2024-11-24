@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
-import tw from "../../utils/tw-identity";
+
+import tw from "@/utils/tw-identity";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;

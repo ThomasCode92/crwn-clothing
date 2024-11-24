@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import CrownLogo from "../assets/crown.svg";
+import CrownLogo from "@/assets/crown.svg";
 
 export default function NavigationBar() {
   return (
