@@ -25,7 +25,7 @@ export default function SignUpForm() {
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault()
 
     if (formFields.password !== formFields.confirmPassword) {
       return alert("Passwords do not match");

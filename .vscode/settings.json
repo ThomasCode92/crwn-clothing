@@ -5,6 +5,10 @@
   "material-icon-theme.files.associations": {
     ".tool-versions": "nodejs_alt"
   },
+  "material-icon-theme.folders.associations": {
+    "actions": "gh-workflows",
+    "cached-deps": "temp"
+  },
   "tailwindCSS.experimental.classRegex": [
     ["[cC]lasses\\s*\\+?=\\s*([^;]*);", "'([^']*)'"],
     ["[cC]lasses\\s*\\+?=\\s*([^;]*);", "\"([^\"]*)\""],
