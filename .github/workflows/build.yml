@@ -19,7 +19,7 @@ jobs:
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
       - name: Run the linter
-        run: npm run lint
+        run: npm run lint -- --max-warnings=0
   test:
     runs-on: ubuntu-latest
     steps:
