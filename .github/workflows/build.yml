@@ -31,8 +31,6 @@ jobs:
           node-version: "20.11.1"
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
-        with:
-          caching: "false"
       - name: Run tests
         run: npm test
   build:
@@ -48,8 +46,6 @@ jobs:
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
         id: chached-deps
-      - name: Output information
-        run: echo "Cache used? ${{ steps.chached-deps.outputs.used-cache }}"
       - name: Build the application
         run: npm run build
       - name: Upload artifacts
