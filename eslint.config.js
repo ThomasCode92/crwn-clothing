@@ -3,12 +3,12 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 import { fixupPluginRules } from "@eslint/compat";
+import vitest from "@vitest/eslint-plugin";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tailwind from "eslint-plugin-tailwindcss";
 import testingLibrary from "eslint-plugin-testing-library";
-import vitest from "eslint-plugin-vitest";
 
 export default tseslint.config(
   { ignores: ["dist"] },
