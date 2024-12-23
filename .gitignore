@@ -7,8 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Test Coverage
+# Test Results
 tests/coverage
+tests/reports
 
 node_modules
 dist
