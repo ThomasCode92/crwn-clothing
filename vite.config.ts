@@ -23,6 +23,14 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./tests/setup.ts",
     exclude: [...configDefaults.exclude, "./firebase", "./config"],
+    coverage: {
+      provider: "v8",
+      include: ["src"],
+      skipFull: true,
+      clean: true,
+      reporter: ["html", "text"],
+      reportsDirectory: "./tests/coverage",
+    },
   },
   resolve: {
     alias: {
