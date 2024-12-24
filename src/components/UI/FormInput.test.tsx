@@ -10,7 +10,7 @@ test("should render with the correct label", () => {
 });
 
 test("should apply shrink classes when input has value", () => {
-  render(<FormInput label="Username" value="test" />);
+  render(<FormInput label="Username" value="test" onChange={vi.fn()} />);
   const labelElement = screen.getByText("Username");
   expect(labelElement).toHaveClass("-top-5 text-xs text-black");
 });
