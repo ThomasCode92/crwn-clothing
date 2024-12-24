@@ -6,4 +6,5 @@ export const coverageV8Options: CoverageV8Options = {
   clean: true,
   reporter: ["html", "text"],
   reportsDirectory: "./tests/coverage",
+  thresholds: { statements: 90, branches: 90, functions: 90, lines: 90 },
 };
