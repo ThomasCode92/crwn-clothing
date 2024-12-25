@@ -51,7 +51,7 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
         (error as AuthError).code === "auth/wrong-password" ||
         (error as AuthError).code === "auth/user-not-found"
       ) {
-        alert("Wrong email or password");
+        return alert("Wrong email or password");
       }
       console.error("Error signing in", error);
     }
@@ -65,6 +65,10 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
   async function handleRedirectWithGoogle() {
     await signInWithGoogleRedirect();
   }
+
+  const handleGoogleSignin = !useRedirect
+    ? handleLoginWithGooglePopup
+    : handleRedirectWithGoogle;
 
   return (
     <section className="flex w-96 flex-col">
@@ -94,15 +98,10 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
           <Button
             type="button"
             buttonType="google-sign-in"
-            onClick={handleLoginWithGooglePopup}
+            onClick={handleGoogleSignin}
           >
             Google Sign In
           </Button>
-          {useRedirect && (
-            <Button type="button" onClick={handleRedirectWithGoogle}>
-              Google Sign In
-            </Button>
-          )}
         </div>
       </form>
     </section>

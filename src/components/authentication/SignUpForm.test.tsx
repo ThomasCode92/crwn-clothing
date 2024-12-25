@@ -126,3 +126,31 @@ test("should show an alert if email is already in use", async function () {
     "Cannot create user, email already in use!",
   );
 });
+
+test("should log an error if sign up fails", async function () {
+  const consoleSpy = vi.spyOn(console, "error");
+  mockedMethods.createAuthUserFn.mockRejectedValue(
+    new Error("Failed to sign up"),
+  );
+
+  render(<SignUpForm />);
+
+  const displayNameInput = screen.getByLabelText(/display name/i);
+  const emailInput = screen.getByLabelText(/email/i);
+  const passwordInput = screen.getByLabelText(/^password/i);
+  const confirmPasswordInput = screen.getByLabelText(/^confirm password/i);
+  const submitButton = screen.getByRole("button", { name: /sign up/i });
+
+  const user = userEvent.setup();
+
+  await user.type(displayNameInput, "John Doe");
+  await user.type(emailInput, "john.doe@test.com");
+  await user.type(passwordInput, "password");
+  await user.type(confirmPasswordInput, "password");
+  await user.click(submitButton);
+
+  expect(consoleSpy).toHaveBeenCalledWith(
+    "Error signing up",
+    expect.any(Error),
+  );
+});
