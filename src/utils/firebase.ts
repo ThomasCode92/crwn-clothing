@@ -37,6 +37,7 @@ if (FIREBASE_AUTH_EMULATOR) {
 
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleAuthProvider);
+
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleAuthProvider);
 
