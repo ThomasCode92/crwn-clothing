@@ -16,14 +16,12 @@ const mocks = vi.hoisted(function () {
 });
 
 vi.mock("firebase/auth", async function () {
-  const auth = await vi.importActual("firebase/auth");
-  return { ...auth, getRedirectResult: mocks.getRedirectResultFn };
+  return { getRedirectResult: mocks.getRedirectResultFn };
 });
 
 vi.mock("@/utils/firebase", async function () {
-  const firebase = await vi.importActual("@/utils/firebase");
   return {
-    ...firebase,
+    auth: {},
     createUserDocumentFromAuth: mocks.createUserDocumentFromAuthFn,
     signInAuthUserWithEmailAndPassword: mocks.signInAuthUserFn,
     signInWithGooglePopup: mocks.signInWithGooglePopupFn,
