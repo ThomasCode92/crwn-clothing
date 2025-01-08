@@ -19,6 +19,7 @@ import {
 import firebaseApp from "@/config/firebase";
 
 const FIREBASE_AUTH_EMULATOR = import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST;
+const CI = import.meta.env.VITE_CI === "true";
 
 const googleAuthProvider = new GoogleAuthProvider();
 
@@ -29,7 +30,10 @@ googleAuthProvider.setCustomParameters({
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore();
 
-if (FIREBASE_AUTH_EMULATOR) {
+console.log(typeof import.meta.env.VITE_CI);
+console.log("CI", CI);
+
+if (!CI && FIREBASE_AUTH_EMULATOR) {
   console.warn(`Using Firebase Auth Emulator on ${FIREBASE_AUTH_EMULATOR}...`);
   connectAuthEmulator(auth, "http://" + FIREBASE_AUTH_EMULATOR);
   connectFirestoreEmulator(db, "localhost", 8080);
