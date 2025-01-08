@@ -30,7 +30,7 @@ googleAuthProvider.setCustomParameters({
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore();
 
-console.log(import.meta.env.VITE_CI);
+console.log(typeof import.meta.env.VITE_CI);
 console.log("CI", CI);
 
 if (!CI && FIREBASE_AUTH_EMULATOR) {
