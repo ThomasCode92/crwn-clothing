@@ -3,7 +3,8 @@
   "gitlens.codeLens.recentChange.enabled": false,
   "gitlens.codeLens.authors.enabled": false,
   "material-icon-theme.files.associations": {
-    ".tool-versions": "nodejs_alt"
+    ".tool-versions": "nodejs_alt",
+    "_redirects": "netlify"
   },
   "material-icon-theme.folders.associations": {
     "actions": "gh-workflows",
