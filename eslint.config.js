@@ -11,7 +11,7 @@ import tailwind from "eslint-plugin-tailwindcss";
 import testingLibrary from "eslint-plugin-testing-library";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  { ignores: ["dist", "tests/coverage"] },
   {
     extends: [
       js.configs.recommended,

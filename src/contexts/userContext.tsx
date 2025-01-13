@@ -6,6 +6,7 @@ interface IUserContext {
   setCurrentUser: Dispatch<SetStateAction<User | null>>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const UserContext = createContext<IUserContext>({
   currentUser: null,
   setCurrentUser: () => {},
