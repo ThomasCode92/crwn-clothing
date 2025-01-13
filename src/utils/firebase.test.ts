@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
+  signOut,
   User,
 } from "firebase/auth";
 import {
@@ -12,6 +13,7 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
+  signOutUser,
 } from "./firebase";
 
 const existsFn = vi.fn().mockReturnValue(false);
@@ -98,5 +100,12 @@ describe("signInAuthUserWithEmailAndPassword", function () {
       "john.doe@crwn.com",
       "password",
     );
+  });
+});
+
+describe("signOutUser", function () {
+  it("should sign out the current user", async function () {
+    await signOutUser();
+    expect(signOut).toHaveBeenCalled();
   });
 });

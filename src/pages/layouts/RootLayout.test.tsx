@@ -3,6 +3,8 @@ import { MemoryRouter } from "react-router-dom";
 
 import RootLayout from "./RootLayout";
 
+vi.mock("firebase/auth");
+
 test("should render the navigation bar", function () {
   render(<RootLayout />, { wrapper: MemoryRouter });
   const navigationBarElement = screen.getByRole("navigation");

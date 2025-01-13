@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
+  signOut,
   User,
 } from "firebase/auth";
 import {
@@ -83,4 +84,8 @@ export async function signInAuthUserWithEmailAndPassword(
   password: string,
 ) {
   return signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function signOutUser() {
+  signOut(auth);
 }
