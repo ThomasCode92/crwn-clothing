@@ -1,9 +1,10 @@
 import { AuthError, getRedirectResult } from "firebase/auth";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 
 import Button from "@/components/UI/Button";
 import FormInput from "@/components/UI/FormInput";
 
+import { UserContext } from "@/contexts/userContext";
 import {
   auth,
   createUserDocumentFromAuth,
@@ -23,6 +24,7 @@ interface SignInFormProps {
 
 export default function SignInForm({ useRedirect = false }: SignInFormProps) {
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
+  const { setCurrentUser } = useContext(UserContext);
 
   useEffect(() => {
     async function handleRedirectResult() {
@@ -42,10 +44,11 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         formFields.email,
         formFields.password,
       );
+      setCurrentUser(user);
     } catch (error) {
       if (
         (error as AuthError).code === "auth/wrong-password" ||
