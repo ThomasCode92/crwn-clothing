@@ -7,5 +7,5 @@ export const coverageV8Options: CoverageV8Options = {
   reporter: ["html", "text"],
   reportsDirectory: "./tests/coverage",
   thresholds: { statements: 90, branches: 90, functions: 90, lines: 90 },
-  exclude: ["**/*.d.ts", "src/*.tsx", "src/models/*"],
+  exclude: ["**/*.d.ts", "src/*.tsx", "src/models/*", "**/*.test.tsx"],
 };

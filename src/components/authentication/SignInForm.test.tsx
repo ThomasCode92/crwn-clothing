@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { User } from "firebase/auth";
+
+import { UserContext } from "@/contexts/userContext";
 
 import SignInForm from "./SignInForm";
 
@@ -31,6 +34,22 @@ vi.mock("@/utils/firebase", async function () {
 
 vi.spyOn(window, "alert").mockImplementation(() => {});
 
+const authUser = { displayName: "Alice" } as User;
+const setCurrentUser = vi.fn();
+
+function setup() {
+  const user = userEvent.setup();
+  const ctx = { currentUser: null, setCurrentUser };
+
+  render(
+    <UserContext.Provider value={ctx}>
+      <SignInForm />
+    </UserContext.Provider>,
+  );
+
+  return user;
+}
+
 beforeEach(() => {
   vi.clearAllMocks();
 });
@@ -61,22 +80,24 @@ test("should render the correct buttons", function () {
 });
 
 test("should submit the form with the correct data", async function () {
-  render(<SignInForm />);
+  mocks.signInAuthUserFn.mockResolvedValueOnce({ user: authUser });
+  const { type, click } = setup();
 
   const emailInput = screen.getByLabelText(/email/i);
   const passwordInput = screen.getByLabelText(/password/i);
   const submitButton = screen.getByRole("button", { name: /^sign in$/i });
 
-  const user = userEvent.setup();
-
-  await user.type(emailInput, "john.doe@test.com");
-  await user.type(passwordInput, "password");
-  await user.click(submitButton);
+  await type(emailInput, "john.doe@test.com");
+  await type(passwordInput, "password");
+  await click(submitButton);
 
   expect(mocks.signInAuthUserFn).toHaveBeenCalledWith(
     "john.doe@test.com",
     "password",
   );
+
+  expect(setCurrentUser).toHaveBeenCalledOnce();
+  expect(setCurrentUser).toHaveBeenCalledWith(authUser);
 });
 
 test("should show an alert if the password is incorrect", async function () {

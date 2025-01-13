@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { UserContext } from "@/contexts/userContext";
+
 import SignUpForm from "./SignUpForm";
 
 const mockedMethods = vi.hoisted(function () {
@@ -22,6 +24,21 @@ mockedMethods.createAuthUserFn.mockResolvedValue({
 });
 
 vi.spyOn(window, "alert").mockImplementation(() => {});
+
+const setCurrentUser = vi.fn();
+
+function setup() {
+  const user = userEvent.setup();
+  const ctx = { currentUser: null, setCurrentUser };
+
+  render(
+    <UserContext.Provider value={ctx}>
+      <SignUpForm />
+    </UserContext.Provider>,
+  );
+
+  return user;
+}
 
 beforeEach(function () {
   vi.clearAllMocks();
@@ -52,7 +69,7 @@ test("should render the correct buttons", function () {
 });
 
 test("should submit the form with the correct data", async function () {
-  render(<SignUpForm />);
+  const { type, click } = setup();
 
   const displayNameInput = screen.getByLabelText(/display name/i);
   const emailInput = screen.getByLabelText(/email/i);
@@ -60,13 +77,11 @@ test("should submit the form with the correct data", async function () {
   const confirmPasswordInput = screen.getByLabelText(/^confirm password/i);
   const submitButton = screen.getByRole("button", { name: /sign up/i });
 
-  const user = userEvent.setup();
-
-  await user.type(displayNameInput, "John Doe");
-  await user.type(emailInput, "john.doe@test.com");
-  await user.type(passwordInput, "password");
-  await user.type(confirmPasswordInput, "password");
-  await user.click(submitButton);
+  await type(displayNameInput, "John Doe");
+  await type(emailInput, "john.doe@test.com");
+  await type(passwordInput, "password");
+  await type(confirmPasswordInput, "password");
+  await click(submitButton);
 
   expect(mockedMethods.createAuthUserFn).toHaveBeenCalledWith(
     "john.doe@test.com",
@@ -77,6 +92,9 @@ test("should submit the form with the correct data", async function () {
     { uid: "123" },
     { displayName: "John Doe" },
   );
+
+  expect(setCurrentUser).toHaveBeenCalledOnce();
+  expect(setCurrentUser).toHaveBeenCalledWith({ uid: "123" });
 });
 
 test("should show an alert if passwords do not match", async function () {

@@ -24,7 +24,7 @@ test("should apply default classes when input is empty", () => {
 test("should apply password classes when input type is password", () => {
   render(<FormInput label="Password" type="password" />);
   const inputElement = screen.getByLabelText("Password");
-  expect(inputElement).toHaveClass("tracking-wider");
+  expect(inputElement).toHaveClass("tracking-widest");
 });
 
 test("should focus input when label is clicked", async () => {
