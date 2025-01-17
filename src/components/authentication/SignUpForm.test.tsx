@@ -25,11 +25,9 @@ mockedMethods.createAuthUserFn.mockResolvedValue({
 
 vi.spyOn(window, "alert").mockImplementation(() => {});
 
-const setCurrentUser = vi.fn();
-
 function setup() {
   const user = userEvent.setup();
-  const ctx = { currentUser: null, setCurrentUser };
+  const ctx = { currentUser: null, setCurrentUser: vi.fn() };
 
   render(
     <UserContext.Provider value={ctx}>
@@ -92,9 +90,6 @@ test("should submit the form with the correct data", async function () {
     { uid: "123" },
     { displayName: "John Doe" },
   );
-
-  expect(setCurrentUser).toHaveBeenCalledOnce();
-  expect(setCurrentUser).toHaveBeenCalledWith({ uid: "123" });
 });
 
 test("should show an alert if passwords do not match", async function () {

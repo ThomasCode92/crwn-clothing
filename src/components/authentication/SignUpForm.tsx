@@ -1,9 +1,8 @@
 import { AuthError } from "firebase/auth";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import Button from "@/components/UI/Button";
 import FormInput from "@/components/UI/FormInput";
-import { UserContext } from "@/contexts/userContext";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -19,7 +18,6 @@ const INITIAL_FORM_FIELDS = {
 
 export default function SignUpForm() {
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
-  const { setCurrentUser } = useContext(UserContext);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -44,7 +42,6 @@ export default function SignUpForm() {
       });
 
       setFormFields(INITIAL_FORM_FIELDS);
-      setCurrentUser(userCredentials.user);
     } catch (error) {
       if ((error as AuthError).code === "auth/email-already-in-use") {
         return alert("Cannot create user, email already in use!");

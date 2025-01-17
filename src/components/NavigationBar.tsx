@@ -7,12 +7,7 @@ import { signOutUser } from "@/utils/firebase";
 import CrownLogo from "@/assets/crown.svg";
 
 export default function NavigationBar() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  async function handleSignOut() {
-    await signOutUser();
-    setCurrentUser(null);
-  }
+  const { currentUser } = useContext(UserContext);
 
   return (
     <nav className="mx-6 mb-6 flex h-16 items-center justify-between">
@@ -25,7 +20,7 @@ export default function NavigationBar() {
         </li>
         <li className="text-lg uppercase">
           {currentUser && (
-            <span className="cursor-pointer" onClick={handleSignOut}>
+            <span className="cursor-pointer" onClick={signOutUser}>
               sign out
             </span>
           )}
