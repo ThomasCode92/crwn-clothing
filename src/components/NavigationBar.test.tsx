@@ -8,10 +8,9 @@ import { signOutUser } from "@/utils/firebase";
 import NavigationBar from "./NavigationBar";
 
 const currentUser = { displayName: "Alice" } as User;
-const setCurrentUser = vi.fn();
 
 function setup(currentUser: User | null) {
-  const value = { currentUser, setCurrentUser };
+  const value = { currentUser, setCurrentUser: vi.fn() };
 
   render(
     <UserContext.Provider value={value}>
@@ -56,5 +55,4 @@ test("should call the sign out function when the sign out link is clicked", asyn
   await click(signOutLinkElement);
 
   expect(signOutUser).toHaveBeenCalled();
-  expect(setCurrentUser).toHaveBeenCalledWith(null);
 });

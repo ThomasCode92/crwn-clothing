@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
@@ -10,6 +11,7 @@ import {
   auth,
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
+  onAuthStateChangedListener,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
@@ -53,6 +55,14 @@ describe("signInWithGoogleRedirect", function () {
   it("should sign in with Google using redirect", async () => {
     await signInWithGoogleRedirect();
     expect(signInWithRedirect).toHaveBeenCalledWith(auth, expect.any(Object));
+  });
+});
+
+describe("onAuthStateChangedListener", function () {
+  it("should call onAuthStateChanged with the provided callback", async () => {
+    const callback = vi.fn();
+    onAuthStateChangedListener(callback);
+    expect(onAuthStateChanged).toHaveBeenCalledWith(auth, callback);
   });
 });
 

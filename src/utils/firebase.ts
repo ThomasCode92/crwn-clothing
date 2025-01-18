@@ -3,6 +3,8 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  NextOrObserver,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
@@ -31,9 +33,6 @@ googleAuthProvider.setCustomParameters({
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore();
 
-console.log(typeof import.meta.env.VITE_CI);
-console.log("CI", CI);
-
 if (!CI && FIREBASE_AUTH_EMULATOR) {
   console.warn(`Using Firebase Auth Emulator on ${FIREBASE_AUTH_EMULATOR}...`);
   connectAuthEmulator(auth, "http://" + FIREBASE_AUTH_EMULATOR);
@@ -45,6 +44,9 @@ export const signInWithGooglePopup = () =>
 
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleAuthProvider);
+
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) =>
+  onAuthStateChanged(auth, callback);
 
 export async function createUserDocumentFromAuth(
   userAuth: User,

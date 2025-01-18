@@ -35,11 +35,10 @@ vi.mock("@/utils/firebase", async function () {
 vi.spyOn(window, "alert").mockImplementation(() => {});
 
 const authUser = { displayName: "Alice" } as User;
-const setCurrentUser = vi.fn();
 
 function setup() {
   const user = userEvent.setup();
-  const ctx = { currentUser: null, setCurrentUser };
+  const ctx = { currentUser: null, setCurrentUser: vi.fn() };
 
   render(
     <UserContext.Provider value={ctx}>
@@ -95,9 +94,6 @@ test("should submit the form with the correct data", async function () {
     "john.doe@test.com",
     "password",
   );
-
-  expect(setCurrentUser).toHaveBeenCalledOnce();
-  expect(setCurrentUser).toHaveBeenCalledWith(authUser);
 });
 
 test("should show an alert if the password is incorrect", async function () {

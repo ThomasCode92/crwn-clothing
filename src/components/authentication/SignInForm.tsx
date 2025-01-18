@@ -1,13 +1,10 @@
-import { AuthError, getRedirectResult } from "firebase/auth";
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import { AuthError } from "firebase/auth";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import Button from "@/components/UI/Button";
 import FormInput from "@/components/UI/FormInput";
 
-import { UserContext } from "@/contexts/userContext";
 import {
-  auth,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
@@ -24,16 +21,6 @@ interface SignInFormProps {
 
 export default function SignInForm({ useRedirect = false }: SignInFormProps) {
   const [formFields, setFormFields] = useState(INITIAL_FORM_FIELDS);
-  const { setCurrentUser } = useContext(UserContext);
-
-  useEffect(() => {
-    async function handleRedirectResult() {
-      const result = await getRedirectResult(auth);
-      if (result) await createUserDocumentFromAuth(result.user);
-    }
-
-    if (useRedirect) handleRedirectResult();
-  }, [useRedirect]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -44,11 +31,10 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
+      await signInAuthUserWithEmailAndPassword(
         formFields.email,
         formFields.password,
       );
-      setCurrentUser(user);
     } catch (error) {
       if (
         (error as AuthError).code === "auth/wrong-password" ||
@@ -61,8 +47,7 @@ export default function SignInForm({ useRedirect = false }: SignInFormProps) {
   }
 
   async function handleLoginWithGooglePopup() {
-    const response = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(response.user);
+    await signInWithGooglePopup();
   }
 
   async function handleRedirectWithGoogle() {
