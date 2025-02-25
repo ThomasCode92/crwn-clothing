@@ -1,9 +1,13 @@
-import SHOP_DATA from "@/data/shop-data.json";
+import { useContext } from "react";
+
+import { ProductsContext } from "@/contexts/productsContext";
 
 export default function ShopPage() {
+  const { products } = useContext(ProductsContext);
+
   return (
     <ul>
-      {SHOP_DATA.map(({ id, name }) => (
+      {products.map(({ id, name }) => (
         <li key={id}>
           <h3>{name}</h3>
         </li>
