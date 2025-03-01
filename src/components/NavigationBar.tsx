@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import CartIcon from "@/components/cart/CartIcon";
+import CartDropdown from "@/components/cart/CartDropdown";
 import { UserContext } from "@/contexts/userContext";
 import { signOutUser } from "@/utils/firebase";
 
@@ -27,8 +28,9 @@ export default function NavigationBar() {
           )}
           {!currentUser && <Link to="/auth">sign in</Link>}
         </li>
-        <li>
+        <li className="relative">
           <CartIcon />
+          <CartDropdown />
         </li>
       </ul>
     </nav>
