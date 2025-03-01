@@ -10,6 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button({
   children,
   buttonType,
+  className,
   ...otherProps
 }: ButtonProps) {
   let classes = tw`h-12 min-w-40 px-8 font-bold uppercase hover:border-2` + " ";
@@ -27,7 +28,7 @@ export default function Button({
   }
 
   return (
-    <button className={classes} {...otherProps}>
+    <button className={`${classes} ${className}`} {...otherProps}>
       {children}
     </button>
   );
