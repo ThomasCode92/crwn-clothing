@@ -1,8 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 interface ICartContext {
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

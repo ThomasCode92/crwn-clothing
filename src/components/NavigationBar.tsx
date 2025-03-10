@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import CartIcon from "@/components/cart/CartIcon";
 import CartDropdown from "@/components/cart/CartDropdown";
+import CartIcon from "@/components/cart/CartIcon";
+import { CartContext } from "@/contexts/cartContext";
 import { UserContext } from "@/contexts/userContext";
 import { signOutUser } from "@/utils/firebase";
 
@@ -10,6 +11,7 @@ import CrownLogo from "@/assets/crown.svg";
 
 export default function NavigationBar() {
   const { currentUser } = useContext(UserContext);
+  const { isOpen } = useContext(CartContext);
 
   return (
     <nav className="mx-6 mb-6 flex h-16 items-center justify-between">
@@ -30,7 +32,7 @@ export default function NavigationBar() {
         </li>
         <li className="relative">
           <CartIcon />
-          <CartDropdown />
+          {isOpen && <CartDropdown />}
         </li>
       </ul>
     </nav>
