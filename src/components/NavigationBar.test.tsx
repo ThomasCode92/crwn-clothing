@@ -3,18 +3,31 @@ import userEvent from "@testing-library/user-event";
 import { User } from "firebase/auth";
 import { MemoryRouter } from "react-router-dom";
 
+import * as CartDropdown from "@/components/cart/CartDropdown";
+import * as CartIcon from "@/components/cart/CartIcon";
+import { CartContext } from "@/contexts/cartContext";
 import { UserContext } from "@/contexts/userContext";
 import { signOutUser } from "@/utils/firebase";
+
 import NavigationBar from "./NavigationBar";
 
 const currentUser = { displayName: "Alice" } as User;
 
-function setup(currentUser: User | null) {
-  const value = { currentUser, setCurrentUser: vi.fn() };
+vi.mock("firebase/auth");
+vi.mock("@/utils/firebase");
+
+const cartIconSpy = vi.spyOn(CartIcon, "default");
+const cartDropdownSpy = vi.spyOn(CartDropdown, "default");
+
+function setup(currentUser: User | null = null, isOpen = false) {
+  const userValue = { currentUser, setCurrentUser: vi.fn() };
+  const cartValue = { isOpen, setIsOpen: vi.fn() };
 
   render(
-    <UserContext.Provider value={value}>
-      <NavigationBar />
+    <UserContext.Provider value={userValue}>
+      <CartContext.Provider value={cartValue}>
+        <NavigationBar />
+      </CartContext.Provider>
     </UserContext.Provider>,
     { wrapper: MemoryRouter },
   );
@@ -22,8 +35,9 @@ function setup(currentUser: User | null) {
   return userEvent.setup();
 }
 
-vi.mock("firebase/auth");
-vi.mock("@/utils/firebase");
+beforeEach(() => {
+  vi.clearAllMocks();
+});
 
 test("should render a logo", function () {
   setup(currentUser);
@@ -38,7 +52,7 @@ test("should have a link to the shop page", function () {
 });
 
 test("should have a link to the authentication page", function () {
-  setup(null);
+  setup();
   const signInLinkElement = screen.getByText(/sign in/i);
   expect(signInLinkElement).toHaveAttribute("href", "/auth");
 });
@@ -55,4 +69,10 @@ test("should call the sign out function when the sign out link is clicked", asyn
   await click(signOutLinkElement);
 
   expect(signOutUser).toHaveBeenCalled();
+});
+
+test("should show the cart icon and cart dropdown", function () {
+  setup(currentUser, true);
+  expect(cartIconSpy).toHaveBeenCalledOnce();
+  expect(cartDropdownSpy).toHaveBeenCalledOnce();
 });
