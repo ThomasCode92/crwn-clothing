@@ -16,7 +16,7 @@ export default function CartIcon() {
       onClick={handleClick}
     >
       <div className="size-6">
-        <ShoppingIcon />
+        <ShoppingIcon data-testid="shopping-icon" />
       </div>
       <span className="absolute bottom-3 text-xs font-bold">0</span>
     </button>

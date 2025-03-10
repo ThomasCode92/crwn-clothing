@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 
-interface ICartContext {
+export interface ICartContext {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
