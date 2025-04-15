@@ -30,6 +30,7 @@ test("should provide the expected context value, with default values", function 
 
   expect(contextValue).toEqual({
     isOpen: false,
+    cartCount: 0,
     setIsOpen: expect.any(Function),
     cartItems: [],
     addItemToCart: expect.any(Function),
