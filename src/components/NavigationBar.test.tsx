@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import * as CartDropdown from "@/components/cart/CartDropdown";
 import * as CartIcon from "@/components/cart/CartIcon";
-import { CartContext } from "@/contexts/cartContext";
+import { CartContext, ICartContext } from "@/contexts/cartContext";
 import { UserContext } from "@/contexts/userContext";
 import { signOutUser } from "@/utils/firebase";
 
@@ -21,11 +21,11 @@ const cartDropdownSpy = vi.spyOn(CartDropdown, "default");
 
 function setup(currentUser: User | null = null, isOpen = false) {
   const userValue = { currentUser, setCurrentUser: vi.fn() };
-  const cartValue = { isOpen, setIsOpen: vi.fn() };
+  const cartValue = { isOpen, setIsOpen: vi.fn(), cartItems: [] };
 
   render(
     <UserContext.Provider value={userValue}>
-      <CartContext.Provider value={cartValue}>
+      <CartContext.Provider value={cartValue as unknown as ICartContext}>
         <NavigationBar />
       </CartContext.Provider>
     </UserContext.Provider>,

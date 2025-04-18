@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useContext } from "react";
 import CartContextProvider, { CartContext } from "./cartContext";
+import { IProduct } from "@/models/Product";
 
 function setup({ children }: { children: React.ReactNode }) {
   render(<CartContextProvider>{children}</CartContextProvider>);
@@ -19,7 +20,7 @@ test("should render children correctly", function () {
   expect(screen.getByText("Test Child")).toBeInTheDocument();
 });
 
-test("should provide the expected context value", function () {
+test("should provide the expected context value, with default values", function () {
   let contextValue: unknown = null;
   const TestComponent = () => {
     contextValue = useContext(CartContext);
@@ -29,18 +30,11 @@ test("should provide the expected context value", function () {
 
   expect(contextValue).toEqual({
     isOpen: false,
+    cartCount: 0,
     setIsOpen: expect.any(Function),
+    cartItems: [],
+    addItemToCart: expect.any(Function),
   });
-});
-
-test("should provide default isOpen value as false", function () {
-  const TestComponent = () => {
-    const { isOpen } = useContext(CartContext);
-    return <div data-testid="isOpen-value">{isOpen.toString()}</div>;
-  };
-  setup({ children: <TestComponent /> });
-
-  expect(screen.getByTestId("isOpen-value")).toHaveTextContent("false");
 });
 
 test("should update isOpen value when setIsOpen is called", async function () {
@@ -70,4 +64,29 @@ test("should update isOpen value when setIsOpen is called", async function () {
   // close cart
   await click(screen.getByTestId("close-button"));
   expect(screen.getByTestId("isOpen-value")).toHaveTextContent("false");
+});
+
+test("should add item to cart when addItemToCart is called", async function () {
+  const TestComponent = () => {
+    const { cartItems, addItemToCart } = useContext(CartContext);
+    function handleClick() {
+      addItemToCart({ id: 1, name: "Test Product" } as IProduct);
+    }
+    return (
+      <>
+        <div data-testid="cart-items-count">{cartItems.length}</div>
+        <button data-testid="add-item-button" onClick={handleClick}>
+          Add to cart
+        </button>
+      </>
+    );
+  };
+  const { click } = setup({ children: <TestComponent /> });
+
+  // initial state
+  expect(screen.getByTestId("cart-items-count")).toHaveTextContent("0");
+
+  // add item to cart
+  await click(screen.getByTestId("add-item-button"));
+  expect(screen.getByTestId("cart-items-count")).toHaveTextContent("1");
 });

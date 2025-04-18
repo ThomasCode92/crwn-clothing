@@ -6,9 +6,9 @@ import { CartContext, ICartContext } from "@/contexts/cartContext";
 import CartIcon from "./CartIcon";
 
 function setup(ctx?: Partial<ICartContext>) {
-  const value = { isOpen: false, setIsOpen: vi.fn(), ...ctx };
+  const value = { cartCount: 0, setIsOpen: vi.fn(), ...ctx };
   render(
-    <CartContext.Provider value={value}>
+    <CartContext.Provider value={value as unknown as ICartContext}>
       <CartIcon />
     </CartContext.Provider>,
   );
@@ -24,9 +24,10 @@ test("should render a button with a shopping icon", function () {
 });
 
 test("should render the total quantity of items in the cart", function () {
-  setup();
+  const cartCount = Math.floor(Math.random() * 11);
+  setup({ cartCount });
   const btnElement = screen.getByRole("button");
-  const quantityElement = within(btnElement).getByText("0");
+  const quantityElement = within(btnElement).getByText(cartCount);
   expect(quantityElement).toBeInTheDocument();
 });
 
