@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 
 import CartDropdown from "@/components/cart/CartDropdown";
 import * as CartItem from "@/components/cart/CartItem";
 import { CartContext, ICartContext } from "@/contexts/cartContext";
+import { MemoryRouter } from "react-router-dom";
 
 function createCartItem(_: unknown, id: number) {
   return { id, name: `Item ${id + 1}` };
@@ -20,6 +21,7 @@ function setup() {
     <CartContext.Provider value={ctxValue}>
       <CartDropdown />
     </CartContext.Provider>,
+    { wrapper: MemoryRouter },
   );
 }
 
@@ -32,8 +34,10 @@ test("should display a cart item for each item in the cart", function () {
   expect(cartItem).toHaveBeenCalledTimes(cartItems.length);
 });
 
-test("should render a checkout button", function () {
+test("should render a checkout link with a button", function () {
   setup();
-  const checkoutButtonElement = screen.getByText(/checkout/i);
+  const linkEl = screen.getByRole("link");
+  const checkoutButtonElement = within(linkEl).getByText(/checkout/i);
+  expect(linkEl).toHaveAttribute("href", "/checkout");
   expect(checkoutButtonElement).toBeInTheDocument();
 });
