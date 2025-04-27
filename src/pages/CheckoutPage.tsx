@@ -3,7 +3,8 @@ import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "@/contexts/cartContext";
 
 export default function CheckoutPage() {
-  const { cartItems, setIsOpen } = useContext(CartContext);
+  const { cartItems, addItemToCart, removeItemFromCart, setIsOpen } =
+    useContext(CartContext);
 
   useEffect(() => setIsOpen(false), [setIsOpen]);
 
@@ -17,8 +18,10 @@ export default function CheckoutPage() {
             <li key={id}>
               <h3>{name}</h3>
               <span>{quantity}</span>
-              <span>decrement</span>
-              <span>increment</span>
+              <span onClick={() => removeItemFromCart(cartItem)}>
+                decrement
+              </span>
+              <span onClick={() => addItemToCart(cartItem)}>increment</span>
             </li>
           );
         })}

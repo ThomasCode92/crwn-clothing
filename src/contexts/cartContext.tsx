@@ -8,7 +8,7 @@ import {
 
 import { ICartItem } from "@/models/CartItem";
 import { IProduct } from "@/models/Product";
-import { addCartItem } from "@/utils/cart";
+import { addCartItem, removeCartItem } from "@/utils/cart";
 
 export interface ICartContext {
   isOpen: boolean;
@@ -16,6 +16,7 @@ export interface ICartContext {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   cartItems: ICartItem[];
   addItemToCart: (item: IProduct) => void;
+  removeItemFromCart: (item: IProduct) => void;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -25,6 +26,7 @@ export const CartContext = createContext<ICartContext>({
   setIsOpen: () => {},
   cartItems: [],
   addItemToCart: () => {},
+  removeItemFromCart: () => {},
 });
 
 export default function CartContextProvider({
@@ -49,7 +51,19 @@ export default function CartContextProvider({
     setCartItems(newCartItems);
   }
 
-  const value = { isOpen, cartCount, setIsOpen, cartItems, addItemToCart };
+  function removeItemFromCart(product: IProduct) {
+    const newCartItems = removeCartItem(cartItems, product);
+    setCartItems(newCartItems);
+  }
+
+  const value = {
+    isOpen,
+    cartCount,
+    setIsOpen,
+    cartItems,
+    addItemToCart,
+    removeItemFromCart,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

@@ -34,6 +34,7 @@ test("should provide the expected context value, with default values", function 
     setIsOpen: expect.any(Function),
     cartItems: [],
     addItemToCart: expect.any(Function),
+    removeItemFromCart: expect.any(Function),
   });
 });
 
