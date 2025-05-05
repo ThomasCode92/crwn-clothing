@@ -24,3 +24,10 @@ export function removeCartItem(
     item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item,
   );
 }
+
+export function clearCartItem(
+  cartItems: ICartItem[],
+  product: IProduct,
+): ICartItem[] {
+  return cartItems.filter(item => item.id !== product.id);
+}

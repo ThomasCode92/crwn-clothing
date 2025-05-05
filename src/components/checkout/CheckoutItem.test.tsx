@@ -17,6 +17,7 @@ const cartItem: ICartItem = {
 const cartCtxValue = {
   addItemToCart: vi.fn(),
   removeItemFromCart: vi.fn(),
+  clearItemFromCart: vi.fn(),
 } as unknown as ICartContext;
 
 function setup() {
@@ -62,4 +63,12 @@ test("should increment the quantity when the increment button is clicked", async
   await click(incrementButton);
   expect(cartCtxValue.addItemToCart).toHaveBeenCalledOnce();
   expect(cartCtxValue.addItemToCart).toHaveBeenCalledWith(cartItem);
+});
+
+test("should clear the item when the clear button is clicked", async function () {
+  const { click } = setup();
+  const clearButton = screen.getByRole("button", { name: "✕" });
+  await click(clearButton);
+  expect(cartCtxValue.clearItemFromCart).toHaveBeenCalledOnce();
+  expect(cartCtxValue.clearItemFromCart).toHaveBeenCalledWith(cartItem);
 });

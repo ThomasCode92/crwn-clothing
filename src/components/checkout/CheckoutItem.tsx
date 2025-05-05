@@ -12,7 +12,8 @@ export default function CheckoutItem({
   imageUrl,
   price,
 }: CheckoutItemProps) {
-  const { addItemToCart, removeItemFromCart } = useContext(CartContext);
+  const { addItemToCart, removeItemFromCart, clearItemFromCart } =
+    useContext(CartContext);
 
   const cartItem: ICartItem = { id, name, quantity, imageUrl, price };
 
@@ -22,6 +23,10 @@ export default function CheckoutItem({
 
   function decrementItemQuantity() {
     removeItemFromCart(cartItem);
+  }
+
+  function clearItem() {
+    clearItemFromCart(cartItem);
   }
 
   return (
@@ -38,7 +43,7 @@ export default function CheckoutItem({
         </button>
       </span>
       <span>{`$${price}`}</span>
-      <button>&#10005;</button>
+      <button onClick={clearItem}>&#10005;</button>
     </li>
   );
 }
