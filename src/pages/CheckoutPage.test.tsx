@@ -20,6 +20,11 @@ const cartItems = Array.from(
   }),
 );
 
+const totalPrice = cartItems.reduce(
+  (total, item) => (total += item.price * item.quantity),
+  0,
+);
+
 const ctxValue = {
   setIsOpen: vi.fn(),
   cartItems,
@@ -53,4 +58,12 @@ test.each(["product", "description", "quantity", "price", "remove"])(
 test("should render the checkout items correctly", function () {
   setup();
   expect(checkoutItem).toHaveBeenCalledTimes(numCartItems);
+});
+
+test("should render the total price correctly", function () {
+  setup();
+  const totalPriceElement = screen.getByRole("heading", {
+    name: `Total: $${totalPrice}`,
+  });
+  expect(totalPriceElement).toBeInTheDocument();
 });
