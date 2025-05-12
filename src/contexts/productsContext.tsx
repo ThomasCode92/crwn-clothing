@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { IProduct } from "@/models/Product";
 
-import PRODUCTS from "@/data/shop-data.json";
+import { SHOP_DATA } from "@/data/shop-data";
+import { addCollectionAndDocuments } from "@/utils/firestore";
 
 interface IProductsContext {
   products: IProduct[];
@@ -18,7 +19,11 @@ export default function ProductsContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [products] = useState<IProduct[]>(PRODUCTS);
+  const [products] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    addCollectionAndDocuments("categories¨", SHOP_DATA);
+  });
 
   const value = { products };
 
