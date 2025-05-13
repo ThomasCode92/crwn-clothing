@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import ProductsContextProvider from "@/contexts/productsContext.tsx";
+import CategoriesContextProvider from "@/contexts/categoriesContext.tsx";
 import UserContextProvider from "@/contexts/userContext.tsx";
 import CartContextProvider from "./contexts/cartContext.tsx";
 
@@ -13,11 +13,11 @@ const rootEl = document.getElementById("root");
 createRoot(rootEl!).render(
   <StrictMode>
     <UserContextProvider>
-      <ProductsContextProvider>
+      <CategoriesContextProvider>
         <CartContextProvider>
           <App />
         </CartContextProvider>
-      </ProductsContextProvider>
+      </CategoriesContextProvider>
     </UserContextProvider>
   </StrictMode>,
 );
