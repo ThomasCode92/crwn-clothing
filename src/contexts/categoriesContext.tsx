@@ -1,45 +1,46 @@
 import { createContext, useEffect, useState } from "react";
 
-import { IProduct } from "@/models/Product";
-
 import { SHOP_DATA } from "@/data/shop-data";
+import { ICategoryItem } from "@/models/Category";
 import {
   addCollectionAndDocuments,
   getCollectionAndDocuments,
 } from "@/utils/firestore";
 
-interface IProductsContext {
-  products: IProduct[];
+type CategoryMap = Record<string, ICategoryItem[]>;
+
+interface ICategoriesContext {
+  categories: CategoryMap;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const ProductsContext = createContext<IProductsContext>({
-  products: [],
+export const CategoriesContext = createContext<ICategoriesContext>({
+  categories: {},
 });
 
-export default function ProductsContextProvider({
+export default function CategoriesContextProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [products] = useState<IProduct[]>([]);
+  const [categories, setCategories] = useState<CategoryMap>({});
 
   useEffect(() => {
     addCollectionAndDocuments("categories", SHOP_DATA);
 
     async function getCategories() {
       const categoriesMap = await getCollectionAndDocuments("categories");
-      console.log(categoriesMap);
+      setCategories(categoriesMap);
     }
 
     getCategories();
   }, []);
 
-  const value = { products };
+  const value = { categories };
 
   return (
-    <ProductsContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 }
