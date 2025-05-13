@@ -3,7 +3,10 @@ import { createContext, useEffect, useState } from "react";
 import { IProduct } from "@/models/Product";
 
 import { SHOP_DATA } from "@/data/shop-data";
-import { addCollectionAndDocuments } from "@/utils/firestore";
+import {
+  addCollectionAndDocuments,
+  getCollectionAndDocuments,
+} from "@/utils/firestore";
 
 interface IProductsContext {
   products: IProduct[];
@@ -22,8 +25,15 @@ export default function ProductsContextProvider({
   const [products] = useState<IProduct[]>([]);
 
   useEffect(() => {
-    addCollectionAndDocuments("categories¨", SHOP_DATA);
-  });
+    addCollectionAndDocuments("categories", SHOP_DATA);
+
+    async function getCategories() {
+      const categoriesMap = await getCollectionAndDocuments("categories");
+      console.log(categoriesMap);
+    }
+
+    getCategories();
+  }, []);
 
   const value = { products };
 
