@@ -7,11 +7,11 @@ type Action = {
   payload: User | null;
 };
 
-type State = {
+export type UserState = {
   currentUser: User | null;
 };
 
-const INITIAL_STATE: State = {
+const INITIAL_STATE: UserState = {
   currentUser: null,
 };
 
