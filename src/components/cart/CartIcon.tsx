@@ -4,10 +4,10 @@ import ShoppingIcon from "@/assets/shopping-bag.svg";
 import { CartContext } from "@/contexts/cartContext";
 
 export default function CartIcon() {
-  const { cartCount, setIsOpen } = useContext(CartContext);
+  const { isOpen, cartCount, setIsOpen } = useContext(CartContext);
 
   function handleClick() {
-    setIsOpen(prevValue => !prevValue);
+    setIsOpen(!isOpen);
   }
 
   return (
