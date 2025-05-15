@@ -10,7 +10,9 @@ export default function ShopPage() {
     <Fragment>
       {Object.keys(categories).map(title => {
         const products = categories[title];
-        return <CategoryPreview title={title} products={products} />;
+        return (
+          <CategoryPreview key={title} title={title} products={products} />
+        );
       })}
     </Fragment>
   );
