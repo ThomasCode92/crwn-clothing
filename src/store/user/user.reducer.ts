@@ -1,8 +1,6 @@
 import { User } from "firebase/auth";
 
-export enum USER_ACTION_TYPE {
-  SET_CURRENT_USER = "SET_CURRENT_USER",
-}
+import { USER_ACTION_TYPE } from "@/store/user/user.types";
 
 type Action = {
   type: USER_ACTION_TYPE;
