@@ -1,6 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "@/components/UI/Button";
-import { CartContext } from "@/contexts/cartContext";
-import { useContext } from "react";
+import { addItemToCart } from "@/store/cart/cart.action";
+import { selectCartItems } from "@/store/cart/cart.selector";
 
 export interface ProductCardProps {
   id: number;
@@ -15,10 +17,13 @@ export default function ProductCard({
   price,
   imageUrl,
 }: ProductCardProps) {
-  const { addItemToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector(selectCartItems);
 
   function handleAddToCart() {
-    addItemToCart({ id, name, price, imageUrl });
+    const itemToAdd = { id, name, price, imageUrl };
+    dispatch(addItemToCart(cartItems, itemToAdd));
   }
 
   return (

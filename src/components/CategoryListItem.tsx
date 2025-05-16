@@ -1,13 +1,13 @@
-import { ICategory } from "@/models/Category";
+import { Category } from "@/models/Category";
 
 interface CategoryItemProps {
-  category: ICategory;
+  category: Category;
 }
 
 export default function CategoryListItem({ category }: CategoryItemProps) {
   return (
     <li
-      key={category.id}
+      key={category.title}
       className="m-2 flex h-60 w-44 min-w-[30%] flex-auto items-center justify-center overflow-hidden border-2 border-black hover:cursor-pointer [&>div]:hover:scale-110 [&>div]:hover:transition-transform"
     >
       <div

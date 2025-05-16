@@ -16,10 +16,12 @@ import {
   doc,
   getDoc,
   getFirestore,
+  QueryDocumentSnapshot,
   setDoc,
 } from "firebase/firestore";
 
 import firebaseApp from "@/config/firebase";
+import { AdditionalInformation, UserData } from "@/models/Auth";
 
 const FIREBASE_AUTH_EMULATOR = import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST;
 const CI = import.meta.env.VITE_CI === "true";
@@ -50,12 +52,12 @@ export const onAuthStateChangedListener = (callback: NextOrObserver<User>) =>
 
 export async function createUserDocumentFromAuth(
   userAuth: User,
-  additionalData?: object,
-) {
+  additionalData = {} as AdditionalInformation,
+): Promise<QueryDocumentSnapshot<UserData>> {
   const userDocRef = doc(db, "users", userAuth.uid);
-  const userSnap = await getDoc(userDocRef);
+  const userSnapshot = await getDoc(userDocRef);
 
-  if (!userSnap.exists()) {
+  if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -71,7 +73,7 @@ export async function createUserDocumentFromAuth(
     }
   }
 
-  return userDocRef;
+  return userSnapshot as QueryDocumentSnapshot<UserData>;
 }
 
 export async function createAuthUserWithEmailAndPassword(

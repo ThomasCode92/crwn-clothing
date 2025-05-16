@@ -1,17 +1,17 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import CartDropdown from "@/components/cart/CartDropdown";
 import CartIcon from "@/components/cart/CartIcon";
-import { CartContext } from "@/contexts/cartContext";
-import { UserContext } from "@/contexts/userContext";
+import { selectIsCartOpen } from "@/store/cart/cart.selector";
+import { selectCurrentUser } from "@/store/user/user.selector";
 import { signOutUser } from "@/utils/firebase";
 
 import CrownLogo from "@/assets/crown.svg";
 
 export default function NavigationBar() {
-  const { currentUser } = useContext(UserContext);
-  const { isOpen } = useContext(CartContext);
+  const currentUser = useSelector(selectCurrentUser);
+  const isOpen = useSelector(selectIsCartOpen);
 
   return (
     <nav className="mx-6 mb-6 flex h-16 items-center justify-between">

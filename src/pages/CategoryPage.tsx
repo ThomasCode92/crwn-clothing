@@ -1,14 +1,15 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import ProductCard from "@/components/products/ProductCard";
-import { CategoriesContext } from "@/contexts/categoriesContext";
+import { selectCategoriesMap } from "@/store/categories/categories.selector";
 
 export default function CategoryPage() {
   const { category } = useParams() as { category: string };
-  const { categories } = useContext(CategoriesContext);
+  const categoriesMap = useSelector(selectCategoriesMap);
 
-  const products = categories[category];
+  const products = categoriesMap[category];
 
   return (
     <Fragment>

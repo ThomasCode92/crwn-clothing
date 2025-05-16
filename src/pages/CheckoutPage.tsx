@@ -1,19 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import CheckoutItem from "@/components/checkout/CheckoutItem";
-import { CartContext } from "@/contexts/cartContext";
+import { setIsCartOpen } from "@/store/cart/cart.action";
+import { selectCartItems, selectCartTotal } from "@/store/cart/cart.selector";
 
 const HEADERS = ["product", "description", "quantity", "price", "remove"];
 
 export default function CheckoutPage() {
-  const { cartItems, setIsOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
 
-  useEffect(() => setIsOpen(false), [setIsOpen]);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
 
-  const cartTotal = cartItems.reduce(
-    (total, item) => (total += item.price * item.quantity),
-    0,
-  );
+  useEffect(() => {
+    dispatch(setIsCartOpen(false));
+  }, [dispatch]);
 
   return (
     <section className="mx-auto w-2/3 text-xl text-gray-600">
