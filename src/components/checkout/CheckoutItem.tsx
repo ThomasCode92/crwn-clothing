@@ -1,7 +1,12 @@
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { CartContext } from "@/contexts/cartContext";
 import { ICartItem } from "@/models/CartItem";
+import {
+  addItemToCart,
+  clearItemFromCart,
+  removeItemFromCart,
+} from "@/store/cart/cart.action";
+import { selectCartItems } from "@/store/cart/cart.selector";
 
 export interface CheckoutItemProps extends ICartItem {}
 
@@ -12,21 +17,21 @@ export default function CheckoutItem({
   imageUrl,
   price,
 }: CheckoutItemProps) {
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
 
+  const cartItems = useSelector(selectCartItems);
   const cartItem: ICartItem = { id, name, quantity, imageUrl, price };
 
   function incrementItemQuantity() {
-    addItemToCart(cartItem);
+    dispatch(addItemToCart(cartItems, cartItem));
   }
 
   function decrementItemQuantity() {
-    removeItemFromCart(cartItem);
+    dispatch(removeItemFromCart(cartItems, cartItem));
   }
 
   function clearItem() {
-    clearItemFromCart(cartItem);
+    dispatch(clearItemFromCart(cartItems, cartItem));
   }
 
   return (
