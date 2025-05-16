@@ -11,6 +11,6 @@ export type Category = {
   items: CategoryItem[];
 };
 
-export type CategoryMap = {
+export type CategoriesMap = {
   [key: string]: CategoryItem[];
 };

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import { setCategoriesMap } from "@/store/categories/categories.action";
+import { setCategories } from "@/store/categories/categories.action";
 import { getCollectionAndDocuments } from "@/utils/firestore";
 
 export default function ShopLayout() {
@@ -10,8 +10,8 @@ export default function ShopLayout() {
 
   useEffect(() => {
     async function getCategories() {
-      const categoriesMap = await getCollectionAndDocuments("categories");
-      dispatch(setCategoriesMap(categoriesMap));
+      const categories = await getCollectionAndDocuments("categories");
+      dispatch(setCategories(categories));
     }
 
     getCategories();

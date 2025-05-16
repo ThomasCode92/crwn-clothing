@@ -1,19 +1,17 @@
-import { ICategoryItem } from "@/models/Category";
+import { Category } from "@/models/Category";
 import { CATEGORIES_ACTION_TYPE } from "@/store/categories/categories.types";
-
-export type CategoryMap = Record<string, ICategoryItem[]>;
 
 type Action = {
   type: CATEGORIES_ACTION_TYPE;
-  payload: CategoryMap;
+  payload: Category[];
 };
 
 export type CategoriesState = {
-  categoriesMap: CategoryMap;
+  categories: Category[];
 };
 
 const INITIAL_STATE: CategoriesState = {
-  categoriesMap: {},
+  categories: [],
 };
 
 export default function categoriesReducer(
@@ -21,7 +19,7 @@ export default function categoriesReducer(
   action: Action,
 ) {
   switch (action.type) {
-    case CATEGORIES_ACTION_TYPE.SET_CATEGORIES_MAP:
+    case CATEGORIES_ACTION_TYPE.SET_CATEGORIES:
       return { ...state, categoriesMap: action.payload };
     default:
       return state;
