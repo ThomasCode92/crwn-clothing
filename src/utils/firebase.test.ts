@@ -29,7 +29,7 @@ vi.mock("firebase/firestore", async function () {
   return {
     ...firestore,
     doc: () => ({ id: "123" }),
-    getDoc: () => ({ exists: existsFn }),
+    getDoc: () => ({ exists: existsFn, data: () => mockUserAuth }),
     setDoc: setDocSpy,
   };
 });
@@ -68,16 +68,19 @@ describe("onAuthStateChangedListener", function () {
 
 describe("createUserDocumentFromAuth", function () {
   it("should create a user document from auth if user doesn't exist", async () => {
-    const userDocRef = await createUserDocumentFromAuth(mockUserAuth);
-    expect(setDocSpy).toHaveBeenCalledWith(userDocRef, expect.any(Object));
-    expect(userDocRef.id).toBe("123");
+    const userSnapshot = await createUserDocumentFromAuth(mockUserAuth);
+    expect(setDocSpy).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "123" }),
+      expect.any(Object),
+    );
+    expect(userSnapshot.data().displayName).toBe("Test User");
   });
 
   it("should just return the user document reference if user exists", async () => {
     existsFn.mockReturnValueOnce(true);
-    const userDocRef = await createUserDocumentFromAuth(mockUserAuth);
+    const userSnapshot = await createUserDocumentFromAuth(mockUserAuth);
     expect(setDocSpy).not.toHaveBeenCalled();
-    expect(userDocRef.id).toBe("123");
+    expect(userSnapshot.data().displayName).toBe("Test User");
   });
 
   it("should log an error if creating a user fails", async function () {

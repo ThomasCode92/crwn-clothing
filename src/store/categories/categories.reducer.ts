@@ -20,7 +20,7 @@ export default function categoriesReducer(
 ) {
   switch (action.type) {
     case CATEGORIES_ACTION_TYPE.SET_CATEGORIES:
-      return { ...state, categoriesMap: action.payload };
+      return { ...state, categories: action.payload };
     default:
       return state;
   }

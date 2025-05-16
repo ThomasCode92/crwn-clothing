@@ -1,16 +1,16 @@
 import CategoryListItem from "./CategoryListItem";
 
-import { ICategory } from "@/models/Category";
+import { Category } from "@/models/Category";
 
 interface CategoryListProps {
-  categories: ICategory[];
+  categories: Category[];
 }
 
 export default function CategoryList({ categories }: CategoryListProps) {
   return (
     <ul className="flex flex-wrap">
       {categories.map(category => (
-        <CategoryListItem key={category.id} category={category} />
+        <CategoryListItem key={category.title} category={category} />
       ))}
     </ul>
   );
