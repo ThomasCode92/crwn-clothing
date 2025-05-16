@@ -6,25 +6,25 @@ import {
   writeBatch,
 } from "firebase/firestore";
 
-import { ICategory, ICategoryItem } from "@/models/Category";
-import { db } from "./firebase";
+import { Category } from "@/models/Category";
+import { db } from "@/utils/firebase";
 
-export async function getCollectionAndDocuments(collectionKey: string) {
+type ObjectToAdd = { title: string };
+
+export async function getCollectionAndDocuments(
+  collectionKey: string,
+): Promise<Category[]> {
   const collectionRef = collection(db, collectionKey);
   const q = query(collectionRef);
   const { docs } = await getDocs(q);
 
-  return docs.reduce<Record<string, ICategoryItem[]>>((acc, doc) => {
-    const { title, items } = doc.data() as ICategory;
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+  return docs.map(doc => doc.data() as Category);
 }
 
-export async function addCollectionAndDocuments(
+export async function addCollectionAndDocuments<T extends ObjectToAdd>(
   collectionKey: string,
-  objectToAdd: { title: string }[],
-) {
+  objectToAdd: T[],
+): Promise<void> {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
