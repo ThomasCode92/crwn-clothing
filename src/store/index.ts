@@ -9,25 +9,24 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import type { PersistConfig } from "redux-persist/lib/types";
 
-import { rootReducer } from "@/store/root-reducer";
+import { rootReducer, type RootState } from "@/store/root-reducer";
 
-export type RootState = ReturnType<typeof rootReducer>;
+// helper type for persist config
+type ExtendedPersistConfig = PersistConfig<RootState> & {
+  whitelist: (keyof RootState)[];
+};
 
 const middlewares = [process.env.NODE_ENV !== "production" && logger].filter(
   (middleware): middleware is Middleware => Boolean(middleware),
 );
 
+// use redux devtools extension in development mode
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
-    window &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const composedEnhancers = composeEnhancer(applyMiddleware(...middlewares));
-
-type ExtendedPersistConfig = PersistConfig<RootState> & {
-  whitelist: (keyof RootState)[];
-};
+const composedEnhancer = composeEnhancer(applyMiddleware(...middlewares));
 
 const persistConfig: ExtendedPersistConfig = {
   key: "root",
@@ -37,10 +36,5 @@ const persistConfig: ExtendedPersistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(
-  persistedReducer,
-  undefined,
-  composedEnhancers,
-);
-
+export const store = createStore(persistedReducer, undefined, composedEnhancer);
 export const persistor = persistStore(store);

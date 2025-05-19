@@ -1,6 +1,6 @@
 import type { Middleware, UnknownAction } from "redux";
 
-import { RootState } from "@/store/store";
+import type { RootState } from "@/store/root-reducer";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export const loggerMiddleware: Middleware<{}, RootState> =

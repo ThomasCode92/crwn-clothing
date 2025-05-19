@@ -1,5 +1,5 @@
 import { CartItem } from "@/models/Cart";
-import { CART_ACTION_TYPE } from "@/store/cart/cart.actions";
+import { CART_ACTION_TYPE } from "@/store/cart/cart.types";
 
 export type CartState = {
   isOpen: boolean;
