@@ -2,6 +2,7 @@ import {
   applyMiddleware,
   compose,
   legacy_createStore as createStore,
+  type Middleware,
 } from "redux";
 import logger from "redux-logger";
 import { persistReducer, persistStore } from "redux-persist";
@@ -12,7 +13,10 @@ import { rootReducer } from "@/store/root-reducer";
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-const middlewares = [logger];
+const middlewares = [process.env.NODE_ENV !== "production" && logger].filter(
+  (middleware): middleware is Middleware => Boolean(middleware),
+);
+
 const composedEnhancers = compose(applyMiddleware(...middlewares));
 
 type ExtendedPersistConfig = PersistConfig<RootState> & {
