@@ -1,5 +1,19 @@
 # CRWN Clothing
 
+## 🗃️ Repository Archived
+
+This project has been archived as part of a shift in focus and priorities. While it served as a useful sandbox for testing and experimentation, the following reasons led to the decision:
+
+- 🧰 **Focus on Modern Tools:** I'm now concentrating on more modern and full-featured frameworks like **Next.js** and **Nuxt.js**, which better align with my current goals and the evolving web ecosystem.
+- 🧠 **Growing Backend Interest:** My interests have moved more toward backend development — building robust **APIs**, working with **databases**, and exploring server-side technologies.
+- 🔬 **Experimentation Goals Met:** This repository helped me test out specific workflows and tools, including:
+  - 🐋 Running the **Firebase emulator in Docker**
+  - 🛎️ Creating **custom Netlify CI actions**
+
+Since these experiments are complete and my focus has shifted, this repo will remain archived for reference purposes.
+
+---
+
 A stylish online retail solution designed for an intuitive and engaging user experience. 👔👗
 
 **About this project**<br />
